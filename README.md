@@ -1,48 +1,63 @@
 # ✨ neovim-config
 
-This is my personal Neovim configuration built around modern plugins using **lazy.nvim**. Below is a list of the main plugins I use and their purpose.
+This is my personal Neovim configuration, designed for efficiency and customization. It includes various plugins for better development experience, LSP support, formatting, and more.
 
-<img src="screenshots/empty.png"/>
-<img src="screenshots/crowded.png"/>
+<img src="screenshots/1.png"/>
+<img src="screenshots/2.png"/>
 
-## 🔌 Key Plugins
+## 🔥 Features
 
-- **[Mason](https://github.com/williamboman/mason.nvim)**: Handles LSP installations.
-- **[Which-key](https://github.com/folke/which-key.nvim)**: Keybinding helper.
-- **[Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim)**: File explorer.
-- **[Telescope](https://github.com/nvim-telescope/telescope.nvim)**: Fuzzy finder for files, buffers, etc.
-- **[nvim-cmp](https://github.com/hrsh7th/nvim-cmp)**: Autocompletion framework.
-- **[Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)**: Syntax highlighting and parsing.
-- **[Monokai Pro](https://github.com/loctvl842/monokai-pro.nvim)**: Theme I use.
-- **[Lualine](https://github.com/nvim-lualine/lualine.nvim)**: Status line plugin.
-- **[Gitsigns](https://github.com/lewis6991/gitsigns.nvim)**: Git integration.
-- **[Trouble](https://github.com/folke/trouble.nvim)**: Diagnostics and quickfix list.
-- **[Mini.nvim](https://github.com/echasnovski/mini.nvim)**: Various enhancements (surround, statusline, etc.).
-- **[Barbar](https://github.com/romgrk/barbar.nvim)**: Tabline management.
-- **[Rust.vim](https://github.com/rust-lang/rust.vim)**: Rust support.
-- **[Crates.nvim](https://github.com/saecki/crates.nvim)**: Rust crate manager.
+- **Monokai Pro Theme** – Aesthetic and configurable color scheme.
+- **File Manager** – `yazi.nvim` integration for navigation.
+- **Better Keybindings** – `which-key.nvim` provides interactive keybinding hints.
+- **Auto-closing Tags** – `nvim-ts-autotag` enhances HTML/XML/JSX editing.
+- **Indentation Guides** – `indent-blankline.nvim` makes indentation clearer.
+- **Color Preview** – `nvim-colorizer.lua` highlights color codes.
+- **LSP Support** – Mason, LSPConfig, and `cmp-nvim-lsp` for autocompletion.
+- **Snippets & Autocomplete** – LuaSnip, `nvim-cmp`, and `cmp_luasnip`.
+- **Error Handling** – `trouble.nvim` for diagnostics and warnings.
+- **Fuzzy Finder** – `telescope.nvim` for searching files, symbols, and more.
+- **Code Formatting** – `neoformat` with support for various formatters (formatters needs to be in the `$PATH`).
+- **CSV Viewing** – `csvview.nvim` for structured table display.
+- **Git Integration** – `gitsigns.nvim` for tracking changes.
+- **Markdown Support** – Live preview and PDF export with `markdown-preview.nvim` and `md-pdf.nvim`.
+- **Auto-save** – `auto-save.nvim` for seamless saving.
+- **Undo History** – `undotree` for better undo management.
+- **Sudo Editing** – `vim-suda` for saving protected files.
+- **LaTeX Support** – `vimtex` for TeX editing with Zathura preview.
+- **Refactoring Tools** – Treesitter Refactor for code structure improvements.
+- **Auto-pairs** – `nvim-autopairs` for automatic bracket pairing.
+- **TODO Highlighting** – `todo-comments.nvim` for tracking tasks in code.
 
-## 🧁 Additional Features
+## ⚙️ Installation
 
-- **Markdown Preview**: `markdown-preview.nvim` for live Markdown previews.
-- **Auto-save**: Automatically saves files during certain events.
-- **Blankline**: Shows indentation levels.
-- **Todo Comments**: Highlight and manage TODO comments.
-- **Neoformat**: Code formatting on demand.
-- **Mediawiki support**: `vim-mediawiki` for editing Mediawiki files.
+Ensure you have Neovim installed, then clone this configuration into your Neovim directory:
 
-## 🔧 Setup
+```sh
+git clone https://github.com/dybdeskarphet/neovim-config ~/.config/nvim
+```
 
-1. Clone the repository:
+## 🔌 Plugins
 
-   ```sh
-   git clone https://github.com/dybdeskarphet/neovim-config.git ~/.config/nvim
-   ```
+This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
-2. Install the plugins:
-   Open Neovim and run `:Lazy` to install all the plugins.
+To install plugins, open Neovim and run:
 
-3. Optionally, ensure you have `yarn` installed for **Markdown Preview** to work.
+```sh
+nvim
+```
+
+Optionally, ensure you have `yarn` installed for **Markdown Preview** to build. Lazy.nvim will automatically set up and install everything else.
+
+## 🏗️ Configuration Structure
+
+- `init.lua` – Main entry point, bootstraps `lazy` and loads modules.
+- `lua/globals.lua` – Helpers for other modules.
+- `lua/keybindings.lua` – Custom keybindings.
+- `lua/lsp.lua` – All LSP and completion configurations.
+- `lua/plugins/init.lua` – Configurations for plugins with small options.
+- `lua/plugins/` – Configurations for plugins with large options.
+- `lua/settings.lua` – Additional Neovim settings.
 
 ## 📜 License
 
