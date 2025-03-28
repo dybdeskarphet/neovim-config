@@ -5,7 +5,7 @@ local ls = require("luasnip")
 -- Global
 wk.add({
     {"K", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover information"},
-    {"<leader>o", "<cmd>Telescope find_files<cr>", desc = "Find files"},
+    {"<leader>o", function() Snacks.picker.smart() end, desc = "Find files"},
     {"<leader>w", "<c-w>", desc = "Press Ctrl-W"},
     {"T", "<cmd>Yazi<cr>", desc = "Open yazi at the current file"}, {
         -- Open in the current working directory
@@ -14,9 +14,9 @@ wk.add({
         desc = "Open the file manager in nvim's working directory"
     },
     {"gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go to declaration"},
-    {"gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references"}, {
+    {
         "<leader>T",
-        "<cmd>below terminal<cr>",
+        function() Snacks.terminal.toggle() end,
         desc = "Open vertical terminal buffer"
     }, {"<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Open Undotree"}
 })
@@ -62,27 +62,34 @@ wk.add({
     {"<A-0>", "<Cmd>BufferLast<CR>", desc = "Go to the last buffer (barbar)"}
 })
 
--- Telescope
+-- Picker
 wk.add({
-    {"<leader>t", group = "Telescope"},
-    {"<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Buffers"},
-    {"<leader>tg", group = "Git"},
-    {"<leader>tgb", "<cmd>Telescope git_branches<cr>", desc = "Git branches"},
-    {"<leader>tgo", "<cmd>Telescope git_files<cr>", desc = "Git files"},
-    {"<leader>tj", "<cmd>Telescope jumplist<cr>", desc = "Jumplist"},
-    {"<leader>to", "<cmd>Telescope find_files<CR>", desc = "Find files"},
-    {"<leader>tp", "<cmd>Telescope oldfiles<cr>", desc = "Oldfiles"},
-    {"<leader>tq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix list"},
+    {"<leader>t", group = "Picker"},
+    {"<leader>tb", function() Snacks.picker.buffers() end, desc = "Buffers"},
+    {"<leader>tg", group = "Git"}, {
+        "<leader>tgb",
+        function() Snacks.picker.git_branches() end,
+        desc = "Git branches"
+    },
     {
-        "<leader>tr",
-        "<cmd>Telescope resume<cr>",
-        desc = "Previous Telescope window"
+        "<leader>tgo",
+        function() Snacks.picker.git_files() end,
+        desc = "Git files"
+    },
+    {
+        "<leader>to",
+        function() Snacks.picker.smart() end,
+        desc = "Smart find files"
+    }, {"<leader>tt", function() Snacks.picker.grep() end, desc = "Live grep"},
+    {
+        "<leader>tq",
+        function() Snacks.picker.qflist() end,
+        desc = "Quickfix list"
     }, {
-        "<leader>ts",
-        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        desc = "Workspace symbols"
-    }, {"<leader>tt", "<cmd>Telescope live_grep<cr>", desc = "Live grep"},
-    {"<leader>ty", "<cmd>TodoTelescope<cr>", desc = "Find to-do marks"}
+        "<leader>ty",
+        function() Snacks.picker.todo_comments() end,
+        desc = "Find to-do marks"
+    }
 })
 
 -- LSP

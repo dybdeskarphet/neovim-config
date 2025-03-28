@@ -18,7 +18,7 @@ opt.fixeol = false
 
 -- Undo
 opt.undofile = true
-opt.undodir = fn.stdpath('config') .. '/.undo'
+opt.undodir = fn.expand("~/.cache/nvim_undo")
 
 -- Searching
 opt.hlsearch = true

@@ -2,8 +2,8 @@
 
 This is my personal Neovim configuration, designed for efficiency and customization. It includes various plugins for better development experience, LSP support, formatting, and more.
 
-<img src="screenshots/1.png"/>
-<img src="screenshots/2.png"/>
+<img src="screenshots/initial_screen.png"/>
+<img src="screenshots/code_screen.png"/>
 
 ## 🔥 Features
 
@@ -11,23 +11,24 @@ This is my personal Neovim configuration, designed for efficiency and customizat
 - **File Manager** – `yazi.nvim` integration for navigation.
 - **Better Keybindings** – `which-key.nvim` provides interactive keybinding hints.
 - **Auto-closing Tags** – `nvim-ts-autotag` enhances HTML/XML/JSX editing.
-- **Indentation Guides** – `indent-blankline.nvim` makes indentation clearer.
 - **Color Preview** – `nvim-colorizer.lua` highlights color codes.
-- **LSP Support** – Mason, LSPConfig, and `cmp-nvim-lsp` for autocompletion.
-- **Snippets & Autocomplete** – LuaSnip, `nvim-cmp`, and `cmp_luasnip`.
-- **Error Handling** – `trouble.nvim` for diagnostics and warnings.
-- **Fuzzy Finder** – `telescope.nvim` for searching files, symbols, and more.
-- **Code Formatting** – `neoformat` with support for various formatters (formatters needs to be in the `$PATH`).
+- **LSP Support** – Mason and LSPConfig for language server management.
+- **Snippets & Autocomplete** – LuaSnip and `blink.cmp` for fast coding.
+- **Error Handling** – `trouble.nvim` displays diagnostics and warnings.
+- **Fuzzy Finder** – `snacks.nvim - picker` for searching files, symbols, and more.
+- **Indentation Guide** – `snacks.nvim - indent` for clear indentation visualization.
+- **Code Formatting** – `neoformat` with support for various formatters (requires formatters in `$PATH`).
 - **CSV Viewing** – `csvview.nvim` for structured table display.
-- **Git Integration** – `gitsigns.nvim` for tracking changes.
-- **Markdown Support** – Live preview and PDF export with `markdown-preview.nvim` and `md-pdf.nvim`.
-- **Auto-save** – `auto-save.nvim` for seamless saving.
-- **Undo History** – `undotree` for better undo management.
-- **Sudo Editing** – `vim-suda` for saving protected files.
+- **Git Integration** – `gitsigns.nvim` for inline git change tracking.
+- **Markdown Support** – Live preview with `markdown-preview.nvim` and PDF export using `md-pdf.nvim`. `easytables.nvim` simplifies markdown table creation.
+- **Auto-save** – `auto-save.nvim` automatically saves your work.
+- **Undo History** – `undotree` provides a visual undo tree.
+- **Sudo Editing** – `vim-suda` enables editing and saving protected files.
 - **LaTeX Support** – `vimtex` for TeX editing with Zathura preview.
-- **Refactoring Tools** – Treesitter Refactor for code structure improvements.
-- **Auto-pairs** – `nvim-autopairs` for automatic bracket pairing.
-- **TODO Highlighting** – `todo-comments.nvim` for tracking tasks in code.
+- **Refactoring Tools** – Treesitter Refactor for improved code structure.
+- **Auto-pairs** – `nvim-autopairs` handles automatic bracket pairing.
+- **TODO Highlighting** – `todo-comments.nvim` helps track tasks in code.
+- **Mediawiki Support** – `vim-mediawiki` provides better syntax highlighting for Mediawiki files.
 
 ## ⚙️ Installation
 
@@ -41,7 +42,7 @@ git clone https://github.com/dybdeskarphet/neovim-config ~/.config/nvim
 
 This configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
-To install plugins, open Neovim and run:
+Plugins will be installed automatically when you open Neovim.
 
 ```sh
 nvim
@@ -52,12 +53,14 @@ Optionally, ensure you have `yarn` installed for **Markdown Preview** to build. 
 ## 🏗️ Configuration Structure
 
 - `init.lua` – Main entry point, bootstraps `lazy` and loads modules.
+- `spell/` – Files for the spellchecker.
 - `lua/globals.lua` – Helpers for other modules.
 - `lua/keybindings.lua` – Custom keybindings.
-- `lua/lsp.lua` – All LSP and completion configurations.
-- `lua/plugins/init.lua` – Configurations for plugins with small options.
+- `lua/lsp.lua` – All LSP configurations.
 - `lua/plugins/` – Configurations for plugins with large options.
+- `lua/plugins/init.lua` – Configurations for plugins with small options.
 - `lua/settings.lua` – Additional Neovim settings.
+- `lua/snippets/` – Additional snippets for unsupported languages.
 
 ## 📜 License
 

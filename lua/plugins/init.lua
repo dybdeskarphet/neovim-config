@@ -27,6 +27,7 @@ return {
     {
         "mikavilpas/yazi.nvim",
         event = "VeryLazy",
+        dependencies = {"folke/snacks.nvim", lazy = true},
         opts = {
             open_for_directories = false,
             keymaps = {show_help = '<f1>'},
@@ -59,14 +60,6 @@ return {
             }
         }
     }, -- }}}
-    -- Indent Blank Line {{{
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
-        opts = {}
-    }, -- }}}
     -- Colorizer {{{
     {
         "catgoose/nvim-colorizer.lua",
@@ -84,10 +77,6 @@ return {
         "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig"
     }, -- }}}
-    -- cmp-nvim-lsp {{{
-    {'hrsh7th/cmp-nvim-lsp'}, -- }}} 
-    -- nvim-cmp {{{
-    {'hrsh7th/nvim-cmp'}, -- }}}
     -- LuaSnip {{{
     {
         "L3MON4D3/LuaSnip",
@@ -97,18 +86,10 @@ return {
         build = "make install_jsregexp",
         dependencies = {"rafamadriz/friendly-snippets"}
     }, -- }}}
-    -- LuaSnip extender for CMP {{{
-    {'saadparwaiz1/cmp_luasnip'}, -- }}}
     -- LSPKind {{{
     {'onsails/lspkind.nvim'}, -- }}}
     -- Trouble {{{
     {'folke/trouble.nvim', opts = {}}, -- }}}
-    -- Telescope {{{
-    {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = {'nvim-lua/plenary.nvim'}
-    }, -- }}}
     -- Formatter {{{
     {
         'sbdchd/neoformat',
