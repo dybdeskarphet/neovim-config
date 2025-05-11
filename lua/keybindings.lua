@@ -1,8 +1,7 @@
 require 'globals'
 local wk = require("which-key")
-local ls = require("luasnip")
 
--- Global
+-- Global {{{
 wk.add({
     {"K", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover information"},
     {"<leader>o", function() Snacks.picker.smart() end, desc = "Find files"},
@@ -20,8 +19,9 @@ wk.add({
         desc = "Open vertical terminal buffer"
     }, {"<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Open Undotree"}
 })
+-- }}}
 
--- Clipboard
+-- Clipboard {{{
 wk.add({
     {
         '<leader>p',
@@ -40,8 +40,9 @@ wk.add({
         mode = {"v", "n"}
     }
 })
+-- }}}
 
--- Barbar
+-- Barbar {{{
 wk.add({
     {
         "<A-h>",
@@ -61,8 +62,9 @@ wk.add({
     {"<A-9>", "<Cmd>BufferGoto 9<CR>", desc = "Go to the 9th buffer (barbar)"},
     {"<A-0>", "<Cmd>BufferLast<CR>", desc = "Go to the last buffer (barbar)"}
 })
+-- }}}
 
--- Picker
+-- Picker {{{
 wk.add({
     {"<leader>t", group = "Picker"},
     {"<leader>tb", function() Snacks.picker.buffers() end, desc = "Buffers"},
@@ -91,8 +93,9 @@ wk.add({
         desc = "Find to-do marks"
     }
 })
+-- }}}
 
--- LSP
+-- LSP {{{
 wk.add({
     {"<leader>l", group = "LSP", desc = ""},
     {
@@ -107,8 +110,9 @@ wk.add({
         desc = "Get information about currently running LSPs"
     }
 })
+-- }}}
 
--- Trouble
+-- Trouble {{{
 wk.add({
     {
         "<leader>x",
@@ -116,15 +120,17 @@ wk.add({
         desc = "Toggle trouble"
     }
 })
+-- }}}
 
--- Spellcheck 
+-- Spellcheck {{{
 wk.add({
     {"<leader>s", group = "Spellcheck"},
     {"<leader>ss", "<cmd>set spell<cr>", desc = "Enable Turkish spellcheck"},
     {"<leader>su", "<cmd>set nospell<cr>", desc = "Disable Turkish spellcheck"}
 })
+-- }}}
 
--- Markdown
+-- Markdown {{{
 wk.add({
     {"<leader>m", group = "Markdown", desc = ""},
     {"<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "Preview markdown file"},
@@ -134,8 +140,9 @@ wk.add({
         desc = "Convert markdown file to PDF"
     }
 })
+-- }}}
 
--- LaTeX
+-- LaTeX {{{
 wk.add({
     {
         "<leader>L",
@@ -144,18 +151,20 @@ wk.add({
         --        cond = function() return vim.bo.filetype == "tex" end
     }
 })
+-- }}}
 
--- LuaSnip
-map({"i", "s"}, "<C-L>", function() ls.jump(1) end, {silent = true})
-map({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
-
--- Neoformat
+-- Neoformat {{{
 wk.add({{"<leader>F", '<Cmd>Neoformat<CR>', desc = "Format document"}})
+-- }}}
 
--- Move visual blocks
+-- Move visual blocks {{{
 vm("K", ":m '<-2<CR>gv=gv")
 vm("J", ":m '>+1<CR>gv=gv")
+-- }}}
 
--- Keybindings for convenience
+-- Keybindings for convenience {{{
 map('n', '<esc><esc>', ":noh<cr>", {noremap = true, silent = true})
 nm("s", "<Nop>")
+-- }}}
+
+-- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

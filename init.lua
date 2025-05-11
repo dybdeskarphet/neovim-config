@@ -29,7 +29,5 @@ require("lazy").setup({
     checker = {enabled = true, notify = false}
 })
 
-require("lsp")
-
 -- Import keybindings.lua
 require("keybindings")

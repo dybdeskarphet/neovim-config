@@ -33,5 +33,12 @@ return {
             query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_-.',
             silent = true
         })
+
+        require('mini.statusline').setup({
+            content = {active = nil, inactive = nil},
+            use_icons = true
+        })
+
+        require('mini.pairs').setup()
     end
 }

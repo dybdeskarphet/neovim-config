@@ -3,7 +3,7 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
         'rafamadriz/friendly-snippets', 'bydlw98/blink-cmp-env',
-        "moyiz/blink-emoji.nvim"
+        "moyiz/blink-emoji.nvim", {'L3MON4D3/LuaSnip', version = 'v2.*'}
     },
     version = '1.*',
     build = 'cargo build --release',
@@ -16,11 +16,14 @@ return {
             ['<C-j>'] = {'select_next', 'fallback'},
             ['<CR>'] = {'accept', 'fallback'},
             ['<C-b>'] = {'scroll_documentation_up', 'fallback'},
-            ['<C-f>'] = {'scroll_documentation_down', 'fallback'}
+            ['<C-f>'] = {'scroll_documentation_down', 'fallback'},
+            ['<Tab>'] = {'snippet_forward', 'fallback'},
+            ['<S-Tab>'] = {'snippet_backward', 'fallback'}
         },
+        snippets = {preset = "luasnip"},
         sources = {
             -- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
-            default = {'lsp', 'path', 'snippets', 'buffer', 'env', 'emoji'},
+            default = {'snippets', 'lsp', 'path', 'buffer', 'env', 'emoji'},
             providers = {
                 env = {
                     name = "Env",
@@ -53,7 +56,6 @@ return {
 
         },
         fuzzy = {implementation = "prefer_rust_with_warning"},
-        snippets = {preset = 'luasnip'},
         appearance = {nerd_font_variant = 'mono'},
         completion = {
             keyword = {range = 'prefix'},
