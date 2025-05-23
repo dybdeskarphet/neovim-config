@@ -8,6 +8,19 @@ return {
     ft = {"markdown"},
     config = function()
         g.mkdp_page_title = "${name}"
-        g.mkdp_browser = "markdown-preview"
+        g.mkdp_browser = "brave"
+
+        require("which-key").add({
+            {"<leader>m", group = "Markdown", desc = ""},
+            {
+                "<leader>mp",
+                "<cmd>MarkdownPreview<CR>",
+                desc = "Preview markdown file"
+            }, {
+                "<leader>mc",
+                function() require("md-pdf").convert_md_to_pdf() end,
+                desc = "Convert markdown file to PDF"
+            }
+        })
     end
 }

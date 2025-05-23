@@ -7,7 +7,7 @@ return {
         require'nvim-treesitter.configs'.setup {
             ensure_installed = {
                 "lua", "typescript", "javascript", "python", "rust", "hyprlang",
-                "latex", "markdown", "csv", "html", "htmldjango", "tsx"
+                "latex", "markdown", "csv", "html", "htmldjango", "tsx", "sql"
             },
             sync_install = true,
             highlight = {enable = true},

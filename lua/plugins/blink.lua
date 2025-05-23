@@ -63,7 +63,7 @@ return {
             ghost_text = {enabled = false},
             documentation = {
                 auto_show = true,
-                auto_show_delay_ms = 500,
+                auto_show_delay_ms = 0,
                 window = {border = 'single'}
             },
             menu = {

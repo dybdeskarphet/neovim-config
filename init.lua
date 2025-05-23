@@ -28,6 +28,3 @@ require("lazy").setup({
     install = {colorscheme = {"habamax"}},
     checker = {enabled = true, notify = false}
 })
-
--- Import keybindings.lua
-require("keybindings")
