@@ -55,11 +55,9 @@ Optionally, ensure you have `yarn` installed for **Markdown Preview** to build. 
 - `init.lua` – Main entry point, bootstraps `lazy` and loads modules.
 - `spell/` – Files for the spellchecker.
 - `lua/globals.lua` – Helpers for other modules.
-- `lua/keybindings.lua` – Custom keybindings.
-- `lua/lsp.lua` – All LSP configurations.
-- `lua/plugins/` – Configurations for plugins with large options.
-- `lua/plugins/init.lua` – Configurations for plugins with small options.
 - `lua/settings.lua` – Additional Neovim settings.
+- `lua/lsp/` – Additional LSP configurations.
+- `lua/plugins/` – Configurations for plugins and their keybindings.
 - `lua/snippets/` – Additional snippets for unsupported languages.
 
 ## 📜 License
