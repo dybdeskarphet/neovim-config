@@ -9,6 +9,7 @@ return {
     config = function()
         g.mkdp_page_title = "${name}"
         g.mkdp_browser = "brave"
+        g.mkdp_auto_close = 0
 
         require("which-key").add({
             {"<leader>m", group = "Markdown", desc = ""},

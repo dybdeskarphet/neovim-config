@@ -4,9 +4,9 @@ return {
     lazy = true,
     ---@type md-pdf.config
     opts = {
-        margins = "1.5cm",
         pandoc_user_args = {
             "-V lang=tr" -- long options
-        }
+        },
+        preview_cmd = function() return 'zathura' end
     }
 }
