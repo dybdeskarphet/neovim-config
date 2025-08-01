@@ -17,7 +17,7 @@ This is my personal Neovim configuration, designed for efficiency and customizat
 - **Error Handling** – `trouble.nvim` displays diagnostics and warnings.
 - **Fuzzy Finder** – `snacks.nvim - picker` for searching files, symbols, and more.
 - **Indentation Guide** – `snacks.nvim - indent` for clear indentation visualization.
-- **Code Formatting** – `neoformat` with support for various formatters (requires formatters in `$PATH`).
+- **Code Formatting** – `conform` installs formatters automatically from `mason-registry`.
 - **CSV Viewing** – `csvview.nvim` for structured table display.
 - **Git Integration** – `gitsigns.nvim` for inline git change tracking.
 - **Markdown Support** – Live preview with `markdown-preview.nvim` and PDF export using `md-pdf.nvim`. `easytables.nvim` simplifies markdown table creation.
