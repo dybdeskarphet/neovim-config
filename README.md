@@ -2,13 +2,14 @@
 
 This is my personal Neovim configuration, designed for efficiency and customization. It includes various plugins for better development experience, LSP support, formatting, and more.
 
-<img src="screenshots/initial_screen.png"/>
-<img src="screenshots/code_screen.png"/>
+<img src="screenshots/initial.png"/>
+<img src="screenshots/code.png"/>
 
 ## 🔥 Features
 
 - **Monokai Pro Theme** – Aesthetic and configurable color scheme.
 - **File Manager** – `yazi.nvim` integration for navigation.
+- **Statusline** – `slimline.nvim`.
 - **Better Keybindings** – `which-key.nvim` provides interactive keybinding hints.
 - **Auto-closing Tags** – `nvim-ts-autotag` enhances HTML/XML/JSX editing.
 - **Color Preview** – `nvim-colorizer.lua` highlights color codes.
