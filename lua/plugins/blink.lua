@@ -1,17 +1,15 @@
-return {
-	"saghen/blink.cmp",
-	-- optional: provides snippets for the snippet source
-	dependencies = {
+MiniDeps.add({
+	source = "saghen/blink.cmp",
+	depends = {
 		"rafamadriz/friendly-snippets",
 		"bydlw98/blink-cmp-env",
 		"moyiz/blink-emoji.nvim",
-		{ "L3MON4D3/LuaSnip", version = "v2.*" },
 	},
-	version = "1.*",
-	build = "cargo +nightly build --release",
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
-	opts = {
+	checkout = "v1.6.0",
+})
+
+MiniDeps.later(function()
+	require("blink.cmp").setup({
 		keymap = {
 			preset = "default",
 			["<C-k>"] = { "select_prev", "fallback" },
@@ -111,6 +109,5 @@ return {
 				},
 			},
 		},
-	},
-	opts_extend = { "sources.default" },
-}
+	})
+end)

@@ -1,7 +1,9 @@
-return {
-	"catgoose/nvim-colorizer.lua",
-	event = "BufReadPre",
-	opts = {
+MiniDeps.add({
+	source = "catgoose/nvim-colorizer.lua",
+})
+
+MiniDeps.later(function()
+	require("colorizer").setup({
 		filetypes = {
 			"css",
 			"html",
@@ -18,5 +20,5 @@ return {
 			rgb_fn = true, -- CSS rgb() and rgba() functions
 			hsl_fn = true, -- CSS hsl() and hsla() functions
 		},
-	},
-}
+	})
+end)
