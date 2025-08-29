@@ -1,38 +1,30 @@
-require("which-key").add({
-	{ "<leader>l", group = "LSP", desc = "" },
-	{
-		"<leader>la",
-		"<cmd>lua vim.lsp.buf.code_action()<CR>",
-		desc = "Code action",
-	},
-	{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename symbol" },
-	{
-		"<leader>lx",
-		function()
-			MiniExtra.pickers.diagnostic()
-		end,
-		desc = "Search diagnostics",
-	},
-	{ "K", vim.lsp.buf.hover(), desc = "Hover information" },
-	{
-		"gd",
-		function()
-			vim.lsp.buf.definition()
-		end,
-		desc = "Go to definition",
-	},
-	{
-		"<leader>gr",
-		function()
-			MiniExtra.pickers.lsp({ scope = "references" })
-		end,
-		desc = "List references",
-	},
-	{
-		"gD",
-		function()
-			vim.lsp.buf.declaration()
-		end,
-		desc = "Goto Declaration",
-	},
-})
+require("helpers.keyboard")
+local lsp = vim.lsp
+
+nm("grh", function()
+	lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled())
+end, "Enable inlay hints")
+
+nm("K", function()
+	lsp.buf.hover()
+end, "Hover information")
+
+nm("gra", function()
+	lsp.buf.code_action()
+end, "Code action")
+
+nm("grn", function()
+	lsp.buf.rename()
+end, "Rename symbol")
+
+nm("grr", function()
+	MiniExtra.pickers.lsp({ scope = "references" })
+end, "List references")
+
+nm("gd", function()
+	lsp.buf.definition()
+end, "Go to definition")
+
+nm("gD", function()
+	lsp.buf.declaration()
+end, "Goto Declaration")

@@ -1,4 +1,5 @@
-require "helpers.mini"
+require("helpers.mini")
+require("helpers.keyboard")
 
 local build_markdown_preview = function(ctx)
 	local plugin_path = ctx.path
@@ -30,7 +31,6 @@ add({
 	source = "MeanderingProgrammer/render-markdown.nvim",
 	depends = {
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-tree/nvim-web-devicons",
 	},
 })
 
@@ -49,30 +49,11 @@ later(function()
 		end,
 	})
 
-	require("which-key").add({
-		{ "<leader>m", group = "Markdown", desc = "" },
-		{
-			"<leader>mp",
-			"<cmd>MarkdownPreview<CR>",
-			desc = "Preview markdown file",
-		},
-		{
-			"<leader>mc",
-			function()
-				require("md-pdf").convert_md_to_pdf()
-			end,
-			desc = "Convert markdown file to PDF",
-		},
-	})
+	nm("<leader>mp", "<cmd>MarkdownPreview<CR>", "Preview markdown file")
+	nm("<leader>mc", function()
+		require("md-pdf").convert_md_to_pdf()
+	end, "Convert markdown file to PDF")
 
-	vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#2F2024", fg = "#ffffff", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#2F251E", fg = "#ffffff", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#222C24", fg = "#ffffff", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#292e3d", fg = "#ffffff", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#2F2024", fg = "#ffffff", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownUnchecked", { fg = "#E84F4F", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownChecked", { fg = "#83C984", bold = true })
-	vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = "#fcba03", bold = true })
 	require("render-markdown").setup({
 
 		heading = {
@@ -164,5 +145,16 @@ later(function()
 				},
 			},
 		},
+	})
+
+	set_highlights({
+		RenderMarkdownH1Bg = { bg = "#2F2024", fg = "#ffffff", bold = true },
+		RenderMarkdownH2Bg = { bg = "#222C24", fg = "#ffffff", bold = true },
+		RenderMarkdownH3Bg = { bg = "#2F251E", fg = "#ffffff", bold = true },
+		RenderMarkdownH4Bg = { bg = "#292e3d", fg = "#ffffff", bold = true },
+		RenderMarkdownH5Bg = { bg = "#2F2024", fg = "#ffffff", bold = true },
+		RenderMarkdownUnchecked = { fg = "#E84F4F", bold = true },
+		RenderMarkdownChecked = { fg = "#83C984", bold = true },
+		RenderMarkdownBullet = { fg = "#fcba03", bold = true },
 	})
 end)

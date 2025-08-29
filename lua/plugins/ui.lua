@@ -1,4 +1,5 @@
 require("helpers.mini")
+require("helpers.highlight")
 
 add({
 	source = "loctvl842/monokai-pro.nvim",
@@ -30,8 +31,6 @@ now(function()
 	})
 	vim.cmd([[colorscheme monokai-pro-spectrum]])
 
-	vim.api.nvim_set_hl(0, "MiniStarterHeader", { bg = "none", fg = "#c8bfff", bold = true })
-	vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", { bg = "none", fg = "#c8bfff", bold = true })
 	local starter = require("mini.starter")
 
 	starter.setup({
@@ -54,17 +53,6 @@ now(function()
 		query_updaters = "abcdefghijklmnopqrstuvwxyz0123456789_-.",
 		silent = true,
 	})
-
-	vim.api.nvim_set_hl(0, "MiniStatusLineModeNormal", { bg = "#222222", fg = "#c8bfff", bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatusLineModeInsert", { bg = "#222222", fg = "#fce566", bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatusLineModeCommand", { bg = "#222222", fg = "#fc618d", bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatusLineModeVisual", { bg = "#222222", fg = "#5ad4e6", bold = true })
-	vim.api.nvim_set_hl(0, "MiniStatusLineModeOther", { bg = "#222222", fg = "#f7f1ff", bold = true })
-
-	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#222222", fg = "#f7f1ff", bold = false })
-	local hl = vim.api.nvim_get_hl(0, { name = "StatusLine" })
-	hl.bg = "#222222"
-	vim.api.nvim_set_hl(0, "StatusLine", hl)
 
 	require("mini.statusline").setup({
 		active = function()
@@ -91,15 +79,15 @@ now(function()
 		inactive = {},
 	})
 
-	local hl = vim.api.nvim_get_hl(0, { name = "MiniTablineCurrent" })
-	hl.fg = "#c8bfff"
-	vim.api.nvim_set_hl(0, "MiniTablineCurrent", hl)
 	require("mini.tabline").setup({
 
 		show_icons = true,
 		format = function(buf_id, label)
-			local suffix = vim.bo[buf_id].modified and "+ " or ""
-			return MiniTabline.default_format(buf_id, label) .. suffix
+			local suffix = vim.bo[buf_id].modified and " " or " "
+			local prefix = (function(buf_id)
+				return buf_id == vim.api.nvim_get_current_buf() and "▎" or "▏"
+			end)(buf_id)
+			return prefix .. MiniTabline.default_format(buf_id, label) .. suffix
 		end,
 		tabpage_section = "left",
 	})
@@ -125,8 +113,21 @@ now(function()
 		},
 	})
 
-	vim.api.nvim_set_hl(0, "HLChunk1", { bg = "#222222", fg = "#FD9353" })
-	vim.api.nvim_set_hl(0, "HLChunk2", { bg = "#222222", fg = "#FD9353" })
-
 	require("foldtext").setup()
+
+	set_highlights({
+		MiniStatusLineModeNormal = { bg = "#222222", fg = "#c8bfff", bold = true },
+		MiniStatusLineModeInsert = { bg = "#222222", fg = "#fce566", bold = true },
+		MiniStatusLineModeCommand = { bg = "#222222", fg = "#fc618d", bold = true },
+		MiniStatusLineModeVisual = { bg = "#222222", fg = "#5ad4e6", bold = true },
+		MiniStatusLineModeOther = { bg = "#222222", fg = "#f7f1ff", bold = true },
+		MiniStarterHeader = { bg = "none", fg = "#c8bfff", bold = true },
+		MiniStarterItemPrefix = { bg = "none", fg = "#c8bfff", bold = true },
+		StatusLineNC = { bg = "#222222", fg = "#f7f1ff", bold = false },
+		HLChunk1 = { bg = "#222222", fg = "#FD9353" },
+		HLChunk2 = { bg = "#222222", fg = "#FD9353" },
+	})
+
+	set_hl_color("BufferLineBufferSelected", "#c8bfff", nil)
+	set_hl_color("StatusLine", nil, "#222222")
 end)

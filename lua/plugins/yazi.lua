@@ -1,3 +1,5 @@
+require("helpers.keyboard")
+
 MiniDeps.add({
 	source = "mikavilpas/yazi.nvim",
 	depends = { "nvim-lua/plenary.nvim" },
@@ -10,13 +12,5 @@ MiniDeps.later(function()
 		keymaps = { show_help = "<f1>" },
 		yazi_floating_window_border = "none",
 	})
-	require("which-key").add({
-		{ "T", "<cmd>Yazi<cr>", desc = "Open yazi at the current file" },
-		{
-			-- Open in the current working directory
-			"<leader>cw",
-			"<cmd>Yazi cwd<cr>",
-			desc = "Open the file manager in nvim's working directory",
-		},
-	})
+    nm("T", "<cmd>Yazi<cr>")
 end)

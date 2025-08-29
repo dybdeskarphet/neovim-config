@@ -1,9 +1,8 @@
+require("helpers.keyboard")
 MiniDeps.add({
 	source = "mbbill/undotree",
 })
 
 MiniDeps.later(function()
-	require("which-key").add({
-		{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Open Undotree" },
-	})
+	nm("<leader>u", "<cmd>UndotreeToggle<cr>", "Show the Undo tree")
 end)

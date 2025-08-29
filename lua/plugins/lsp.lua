@@ -1,4 +1,5 @@
 require("helpers.mini")
+require("helpers.keyboard")
 
 local build_luasnip = function(ctx)
 	local luasnip_path = ctx.path -- comes from hook argument
@@ -51,6 +52,7 @@ later(function()
 		ensure_installed = {
 			"lua_ls",
 			"basedpyright",
+			"tinymist",
 			"rust_analyzer",
 			"marksman",
 			"jsonls",
@@ -90,6 +92,7 @@ later(function()
 			sh = { "shfmt" },
 			c = { "clang-format" },
 			cs = { "csharpier", lsp_format = "fallback" },
+			typst = { "prettypst", lsp_format = "fallback" },
 		},
 	})
 
@@ -102,20 +105,11 @@ later(function()
 
 	require("mason-conform").setup()
 	require("trouble").setup()
-	require("which-key").add({
-		{
-			"<leader>F",
-			function()
-				require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
-			end,
-			desc = "Format the buffer",
-		},
-		{
-			"<leader>x",
-			"<cmd>Trouble diagnostics toggle<cr>",
-			desc = "Toggle trouble",
-		},
-	})
 
-    require("luasnip.loaders.from_vscode").lazy_load()
+	nm("<leader>F", function()
+		require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
+	end, "Format the buffer")
+	nm("<leader>x", "<cmd>Trouble diagnostics toggle<cr>", "Toggle trouble")
+
+	require("luasnip.loaders.from_vscode").lazy_load()
 end)

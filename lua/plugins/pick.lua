@@ -1,3 +1,4 @@
+require("helpers.keyboard")
 MiniDeps.later(function()
 	require("mini.pick").setup({
 		window = {
@@ -7,50 +8,25 @@ MiniDeps.later(function()
 		},
 	})
 	require("mini.extra").setup()
-	require("which-key").add({
-		{
-			"<leader>b",
-			function()
-				MiniPick.builtin.buffers()
-			end,
-			desc = "Buffers",
-		},
-		{ "<leader>tg", group = "Git" },
-		{ "<leader>t", group = "Picker" },
-		{
-			"<leader>tgb",
-			function()
-				MiniExtra.pickers.git_branches()
-			end,
-			desc = "Git branches",
-		},
-		{
-			"<leader>tgo",
-			function()
-				MiniExtra.pickers.git_files()
-			end,
-			desc = "Git files",
-		},
-		{
-			"<leader>to",
-			function()
-				MiniPick.builtin.files()
-			end,
-			desc = "Smart find files",
-		},
-		{
-			"<leader>tt",
-			function()
-				MiniPick.builtin.grep_live()
-			end,
-			desc = "Live grep",
-		},
-		{
-			"<leader>ty",
-			function()
-				MiniExtra.pickers.hipatterns()
-			end,
-			desc = "Find to-do marks",
-		},
-	})
+	nm("<leader>b", function()
+		MiniPick.builtin.buffers()
+	end, "Buffers")
+	nm("<leader>tgb", function()
+		MiniExtra.pickers.git_branches()
+	end, "Git branches")
+	nm("<leader>tgo", function()
+		MiniExtra.pickers.git_files()
+	end, "Git files")
+	nm("<leader>to", function()
+		MiniPick.builtin.files()
+	end, "Smart find files")
+	nm("<leader>tx", function()
+		MiniPick.pickers.diagnostic()
+	end, "Search diagnostics")
+	nm("<leader>tt", function()
+		MiniPick.builtin.grep_live()
+	end, "Live grep")
+	nm("<leader>ty", function()
+		MiniExtra.pickers.hipatterns()
+	end, "Find to-do marks")
 end)

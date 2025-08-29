@@ -61,11 +61,12 @@ MiniDeps.later(function()
 		completion = {
 			keyword = { range = "prefix" },
 			accept = { auto_brackets = { enabled = false } },
-			ghost_text = { enabled = false },
+			ghost_text = { enabled = true },
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
 				window = { border = "single" },
+				treesitter_highlighting = true,
 			},
 			menu = {
 				draw = {
@@ -78,9 +79,9 @@ MiniDeps.later(function()
 							text = function(ctx)
 								local icon = ctx.kind_icon
 								if vim.tbl_contains({ "Path" }, ctx.source_name) then
-									local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-									if dev_icon then
-										icon = dev_icon
+									local mini_icon, _ = require("mini.icons").get(ctx.item.data.type, ctx.label)
+									if mini_icon then
+										icon = mini_icon
 									end
 								else
 									icon = require("lspkind").symbolic(ctx.kind, {
@@ -91,15 +92,12 @@ MiniDeps.later(function()
 								return icon .. ctx.icon_gap
 							end,
 
-							-- Optionally, use the highlight groups from nvim-web-devicons
-							-- You can also add the same function for `kind.highlight` if you want to
-							-- keep the highlight groups in sync with the icons.
 							highlight = function(ctx)
 								local hl = ctx.kind_hl
 								if vim.tbl_contains({ "Path" }, ctx.source_name) then
-									local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-									if dev_icon then
-										hl = dev_hl
+									local mini_icon, mini_hl = require("mini.icons").get(ctx.item.data.type, ctx.label)
+									if mini_icon then
+										hl = mini_hl
 									end
 								end
 								return hl

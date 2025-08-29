@@ -7,24 +7,28 @@ delmap = vim.keymap.del
 -- Keyboard
 ---@param key string The keybinding to map
 ---@param command string|function The command or function to execute
-function nm(key, command)
-	map("n", key, command, { noremap = true })
+---@param desc string Description of the command
+function nm(key, command, desc)
+	map("n", key, command, { noremap = true, desc = desc })
 end
 
 ---@param key string
 ---@param command string|function
-function im(key, command)
-	map("i", key, command, { noremap = true })
+---@param desc string Description of the command
+function im(key, command, desc)
+	map("i", key, command, { noremap = true, desc = desc })
 end
 
 ---@param key string
 ---@param command string|function
-function vm(key, command)
-	map("v", key, command, { noremap = true })
+---@param desc string Description of the command
+function vm(key, command, desc)
+	map("v", key, command, { noremap = true, desc = desc })
 end
 
 ---@param key string
 ---@param command string|function
-function tm(key, command)
-	map("t", key, command, { noremap = true })
+---@param desc string Description of the command
+function tm(key, command, desc)
+	map("t", key, command, { noremap = true, desc = desc })
 end

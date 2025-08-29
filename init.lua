@@ -26,7 +26,7 @@ local plugins_path = vim.fn.stdpath("config") .. "/lua/plugins"
 -- Full control over plugin files
 local plugin_files = {
 	"ui.lua",
-	"which-key.lua",
+	-- "which-key.lua",
 	"lsp.lua",
 	"treesitter.lua",
 	"blink.lua",
