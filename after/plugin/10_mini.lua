@@ -26,7 +26,7 @@ later(function()
 			winblend = 25,
 		},
 	})
-	vim.notify = require("mini.notify").make_notify()
+	notify = require("mini.notify").make_notify()
 	require("mini.bufremove").setup()
 	require("mini.trailspace").setup()
 

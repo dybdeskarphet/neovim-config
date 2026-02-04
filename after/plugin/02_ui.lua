@@ -155,7 +155,7 @@ now(function()
 		end
 		require("gruvbox-minimal").setup(gruvbox_config)
 		cmd.colorscheme("gruvbox-minimal")
-		print("Gruvbox Minimal reloaded! :D")
+		notify("Gruvbox Minimal reloaded! :D")
 	end)
 
 	set_highlights({

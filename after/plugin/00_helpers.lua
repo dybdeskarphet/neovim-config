@@ -2,6 +2,7 @@ opt = vim.opt
 cmd = vim.cmd
 g = vim.g
 b = vim.b
+notify = vim.notify
 
 now, later, add = MiniDeps.now, MiniDeps.later, MiniDeps.add
 

@@ -60,7 +60,7 @@ now(function()
 
 	vim.api.nvim_create_user_command("TSCheck", function()
 		local is_active = tostring(vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] ~= nil)
-		vim.notify("Is TS Active: " .. is_active)
+		notify("Is TS Active: " .. is_active)
 	end, {})
 
 	vim.api.nvim_create_autocmd("FileType", {
