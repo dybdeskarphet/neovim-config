@@ -1,4 +1,4 @@
-MiniDeps.later(function()
+later(function()
 	nm("<leader>b", function()
 		MiniPick.builtin.buffers()
 	end, "Buffers")

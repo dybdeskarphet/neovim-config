@@ -1,8 +1,8 @@
-MiniDeps.add({
+add({
 	source = "hat0uma/csvview.nvim",
 })
 
-MiniDeps.later(function()
+later(function()
 	require("csvview").setup({
 		view = {
 			---@type "highlight" | "border"
