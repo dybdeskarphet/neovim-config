@@ -1,0 +1,14 @@
+-- add({
+-- 	source = "mikavilpas/yazi.nvim",
+-- 	depends = { "nvim-lua/plenary.nvim" },
+-- })
+--
+-- later(function()
+-- 	vim.api.nvim_set_hl(0, "YaziFloat", { link = "NormalFloat" })
+-- 	require("yazi").setup({
+-- 		open_for_directories = false,
+-- 		keymaps = { show_help = "<f1>" },
+-- 		yazi_floating_window_border = "none",
+-- 	})
+-- 	nm("T", "<cmd>Yazi<cr>")
+-- end)
