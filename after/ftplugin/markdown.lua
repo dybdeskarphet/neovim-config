@@ -1,15 +1,20 @@
-require("helpers.mini")
-
 local build_markdown_preview = function(ctx)
 	local plugin_path = ctx.path
 
 	if vim.fn.isdirectory(plugin_path) == 1 then
-		local handle = io.popen("cd " .. plugin_path .. " && npm install")
-		local result = handle:read("*a")
-		handle:close()
-		print(result)
+		notify("Starting npm install in " .. plugin_path .. "...", vim.log.levels.INFO)
+
+		vim.system({ "npm", "install" }, { cwd = plugin_path }, function(obj)
+			vim.schedule(function()
+				if obj.code == 0 then
+					notify("npm install finished successfully!", vim.log.levels.INFO)
+				else
+					notify("npm install failed:\n" .. obj.stderr, vim.log.levels.ERROR)
+				end
+			end)
+		end)
 	else
-		print("Plugin directory not found: " .. plugin_path)
+		notify("Plugin directory not found: " .. plugin_path, vim.log.levels.ERROR)
 	end
 end
 
@@ -31,10 +36,6 @@ add({
 	depends = {
 		"nvim-treesitter/nvim-treesitter",
 	},
-})
-
-add({
-	source = "marcocofano/excalidraw.nvim",
 })
 
 add({
@@ -173,16 +174,6 @@ later(function()
 			position = "center",
 			top_pad = 0,
 			bottom_pad = 0,
-		},
-	})
-
-	require("excalidraw").setup({
-		storage_dir = "~/.excalidraw",
-		templates_dir = "~/.excalidraw/templates",
-		open_on_create = true,
-		relative_path = true,
-		picker = {
-			link_scene_mapping = "<C-l>",
 		},
 	})
 

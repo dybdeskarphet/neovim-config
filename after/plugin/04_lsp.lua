@@ -1,14 +1,19 @@
 local build_luasnip = function(ctx)
-	local luasnip_path = ctx.path -- comes from hook argument
+	local luasnip_path = ctx.path
 
-	print("LuaSnip path: " .. luasnip_path)
 	if vim.fn.isdirectory(luasnip_path) == 1 then
-		local handle = io.popen("cd " .. luasnip_path .. " && make install_jsregexp")
-		local result = handle:read("*a")
-		handle:close()
-		print(result)
+		notify("Building jsregexp for LuaSnip...", vim.log.levels.INFO)
+		vim.system({ "make", "install_jsregexp" }, { cwd = luasnip_path }, function(obj)
+			vim.schedule(function()
+				if obj.code == 0 then
+					notify("jsregexp installed successfully!", vim.log.levels.INFO)
+				else
+					notify("Build failed:\n" .. obj.stderr, vim.log.levels.ERROR)
+				end
+			end)
+		end)
 	else
-		print("LuaSnip directory not found: " .. luasnip_path)
+		notify("LuaSnip directory not found: " .. luasnip_path, vim.log.levels.ERROR)
 	end
 end
 
@@ -105,7 +110,7 @@ now(function()
 		if args.bang then
 			-- FormatDisable! will disable formatting just for this buffer
 			b.disable_autoformat = true
-			vim.notify("Disabled autoformat for current buffer")
+			notify("Disabled autoformat for current buffer")
 		else
 			g.disable_autoformat = true
 		end
@@ -116,7 +121,7 @@ now(function()
 	vim.api.nvim_create_user_command("FormatEnable", function()
 		b.disable_autoformat = false
 		g.disable_autoformat = false
-		vim.notify("Enabled autoformat for current buffer")
+		notify("Enabled autoformat for current buffer")
 	end, {
 		desc = "Re-enable autoformat-on-save",
 	})
