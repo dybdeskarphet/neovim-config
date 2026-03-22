@@ -25,7 +25,7 @@ Plugins will be installed automatically when you open Neovim.
 nvim
 ```
 
-Ensure you have `npm` installed for **Markdown Preview** to build. Lazy.nvim will automatically set up and install everything else.
+Ensure you have `npm` installed for **Markdown Preview** to build. `mini.deps` will automatically set up and install everything else.
 
 ## Configuration Structure
 
