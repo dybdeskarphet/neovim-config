@@ -29,7 +29,8 @@ Ensure you have `npm` installed for **Markdown Preview** to build. Lazy.nvim wil
 
 ## Configuration Structure
 
-- `init.lua` – Main entry point, bootstraps `mini.deps`.
-- `after/plugin/` – All the configurations.
+- `plugin/` – All the configurations.
 - `after/ftplugin/` – Configurtaions for certain file types.
 - `spell/` – Spell files.
+- `queries/` – User defined queries.
+- `snippets/` – User defined snippets (`rafamadriz/friendly-snippets` is also installed; there is no connection between the two).
