@@ -100,12 +100,6 @@ vim.notify = require("mini.notify").make_notify({
 	OFF = { duration = 0, hl_group = "MiniNotifyNormal" },
 })
 notify = vim.notify
-
--- Open History {{{2
-nm("<leader>h", function()
-	MiniNotify.show_history()
-end, "Open history")
--- }}}
 -- }}}
 
 -- vim: fdm=marker fdl=0
