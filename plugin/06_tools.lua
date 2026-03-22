@@ -194,6 +194,10 @@ later(function()
 	})
 	-- }}}
 
+	-- mini.cmdline {{{
+	require("mini.cmdline").setup()
+	-- }}}
+
 	-- mini.notify, show history mapping {{{
 	nm("<leader>h", require("mini.notify").show_history, "Open history")
 	-- }}}
