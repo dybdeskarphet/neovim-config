@@ -1,11 +1,18 @@
+-- mini.deps helpers {{{
+later, add = MiniDeps.later, MiniDeps.add
+-- }}}
+
+-- Vim helpers {{{
+fn = vim.fn
 opt = vim.opt
+go = vim.go
+wo = vim.wo
 cmd = vim.cmd
 g = vim.g
 b = vim.b
-notify = vim.notify
+-- }}}
 
-now, later, add = MiniDeps.now, MiniDeps.later, MiniDeps.add
-
+-- Keymap helpers {{{
 ---@type vim.keymap.set
 map = vim.keymap.set
 
@@ -40,7 +47,9 @@ end
 function tm(key, command, desc)
 	map("t", key, command, { noremap = true, desc = desc })
 end
+-- }}}
 
+-- Other helpers {{{
 function toEpoch(dateStr)
 	local year, month, day = dateStr:match("(%d+)-(%d+)-(%d+)")
 	return os.time({
@@ -52,7 +61,9 @@ function toEpoch(dateStr)
 		sec = 0,
 	})
 end
+-- }}}
 
+-- Highlight helpers {{{
 function set_highlights(tbl)
 	for group, opts in pairs(tbl) do
 		vim.api.nvim_set_hl(0, group, opts)
@@ -72,3 +83,29 @@ function set_hl_color(group_name, fg_color, bg_color)
 
 	vim.api.nvim_set_hl(0, group_name, hl)
 end
+-- }}}
+
+-- mini.notify {{{1
+require("mini.notify").setup({
+	lsp_progress = {
+		enable = true,
+	},
+})
+vim.notify = require("mini.notify").make_notify({
+	ERROR = { duration = 5000, hl_group = "DiagnosticError" },
+	WARN = { duration = 5000, hl_group = "DiagnosticWarn" },
+	INFO = { duration = 5000, hl_group = "MiniNotifyNormal" },
+	DEBUG = { duration = 0, hl_group = "DiagnosticHint" },
+	TRACE = { duration = 0, hl_group = "MiniNotifyNormal" },
+	OFF = { duration = 0, hl_group = "MiniNotifyNormal" },
+})
+notify = vim.notify
+
+-- Open History {{{2
+nm("<leader>h", function()
+	MiniNotify.show_history()
+end, "Open history")
+-- }}}
+-- }}}
+
+-- vim: fdm=marker fdl=0

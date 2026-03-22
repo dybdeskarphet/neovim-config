@@ -1,7 +1,7 @@
--- Bootstrap mini.nvim
-local path_package = vim.fn.stdpath("data") .. "/site/"
-local mini_path = path_package .. "pack/deps/start/mini.nvim"
-if not vim.loop.fs_stat(mini_path) then
+-- Bootstrap mini.nvim {{{
+local path_package = vim.fn.stdpath("data") .. "/site"
+local mini_path = path_package .. "/pack/deps/start/mini.nvim"
+if not vim.uv.fs_stat(mini_path) then
 	vim.cmd('echo "Installing `mini.nvim`" | redraw')
 	local clone_cmd = {
 		"git",
@@ -14,6 +14,10 @@ if not vim.loop.fs_stat(mini_path) then
 	vim.cmd("packadd mini.nvim | helptags ALL")
 	vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
+-- }}}
 
--- Set up 'mini.deps' (customize to your liking)
+-- mini.deps {{{
 require("mini.deps").setup({ path = { package = path_package } })
+-- }}}
+
+-- vim: fdm=marker fdl=0

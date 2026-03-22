@@ -1,0 +1,20 @@
+{
+  "Jupyter Markdown Cell": {
+    "prefix": "md",
+    "body": [
+      "# %% [markdown]",
+      "r\"\"\"",
+      "$1",
+      "\"\"\""
+    ],
+    "description": "Insert a Jupyter markdown cell block"
+  },
+  "Jupyter Python Cell": {
+    "prefix": "py",
+    "body": [
+      "# %%",
+      "$1"
+    ],
+    "description": "Insert a Jupyter Python code block"
+  }
+}

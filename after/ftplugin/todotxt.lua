@@ -1,55 +1,39 @@
-later(function()
-	nm("<leader>b", function()
-		MiniPick.builtin.buffers()
-	end, "Buffers")
-	nm("<leader>sgb", function()
-		MiniExtra.pickers.git_branches()
-	end, "Git branches")
-	nm("<leader>sgo", function()
-		MiniExtra.pickers.git_files()
-	end, "Git files")
-	nm("<leader>so", function()
-		MiniPick.builtin.files()
-	end, "Smart find files")
-	nm("<leader>sx", function()
-		MiniPick.pickers.diagnostic()
-	end, "Search diagnostics")
-	nm("<leader>st", function()
-		MiniPick.builtin.grep_live()
-	end, "Live grep")
-	nm("<leader>sy", function()
-		MiniExtra.pickers.hipatterns()
-	end, "Find to-do marks")
+-- Keybindings {{{
+nm("<leader>sn", "<cmd>TodoTxt new<cr>", "New todo entry")
+nm("<leader>st", "<cmd>TodoTxt<cr>", "Toggle todo.txt")
+nm("<leader>sd", "<cmd>DoneTxt<cr>", "Toggle done.txt")
+nm("<leader>sg", "<cmd>TodoTxt ghost<cr>", "Toggle ghost text")
+nm("<cr>", "<Plug>(TodoTxtToggleState)", "Toggle task state")
+nm("<c-c>n", "<Plug>(TodoTxtCyclePriority)", "Cycle priority")
+nm("<leader>sm", "<Plug>(TodoTxtMoveDone)", "Move done tasks")
+nm("<leader>sss", "<Plug>(TodoTxtSortTasks)", "Sort tasks (default)")
+nm("<leader>ssp", "<Plug>(TodoTxtSortByPriority)", "Sort by priority")
+nm("<leader>ssc", "<Plug>(TodoTxtSortByContext)", "Sort by context")
+nm("<leader>ssP", "<Plug>(TodoTxtSortByProject)", "Sort by project")
+nm("<leader>ssd", "<Plug>(TodoTxtSortByDueDate)", "Sort by due date")
+-- }}}
 
-	nm("<leader>tn", "<cmd>TodoTxt new<cr>", "New todo entry")
-	nm("<leader>tt", "<cmd>TodoTxt<cr>", "Toggle todo.txt")
-	nm("<leader>td", "<cmd>DoneTxt<cr>", "Toggle done.txt")
-	nm("<leader>tg", "<cmd>TodoTxt ghost<cr>", "Toggle ghost text")
-	nm("<cr>", "<Plug>(TodoTxtToggleState)", "Toggle task state")
-	nm("<c-c>n", "<Plug>(TodoTxtCyclePriority)", "Cycle priority")
-	nm("<leader>tm", "<Plug>(TodoTxtMoveDone)", "Move done tasks")
-	nm("<leader>tss", "<Plug>(TodoTxtSortTasks)", "Sort tasks (default)")
-	nm("<leader>tsp", "<Plug>(TodoTxtSortByPriority)", "Sort by priority")
-	nm("<leader>tsc", "<Plug>(TodoTxtSortByContext)", "Sort by context")
-	nm("<leader>tsP", "<Plug>(TodoTxtSortByProject)", "Sort by project")
-	nm("<leader>tsd", "<Plug>(TodoTxtSortByDueDate)", "Sort by due date")
+-- calcurse automation {{{
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	buffer = 0,
+	callback = function()
+		local write_handle = io.popen("calcursetodo")
+		local write_result = write_handle:read("*a")
+		write_handle:close()
+		local sync_handle = io.popen("calcurse --export >~/.config/phone/calendar/calcurse.ics")
+		local sync_result = sync_handle:read("*a")
+		sync_handle:close()
+	end,
+})
+-- }}}
 
-	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-		buffer = 0,
-		callback = function()
-			local write_handle = io.popen("calcursetodo")
-			local write_result = write_handle:read("*a")
-			write_handle:close()
-			local sync_handle = io.popen("calcurse --export >~/.config/phone/calendar/calcurse.ics")
-			local sync_result = sync_handle:read("*a")
-			sync_handle:close()
-		end,
-	})
+-- Don't show warning when to-dos moved to `done` {{{
+vim.api.nvim_create_autocmd("BufWritePre", {
+	buffer = 0, -- Attach only to this specific buffer
+	callback = function()
+		vim.cmd("silent! write!")
+	end,
+})
+-- }}}
 
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		buffer = 0, -- Attach only to this specific buffer
-		callback = function()
-			vim.cmd("silent! write!")
-		end,
-	})
-end)
+-- vim: fdm=marker fdl=0

@@ -1,12 +1,14 @@
-add({
-	source = "hat0uma/csvview.nvim",
-})
+-- Initialize plugins {{{
+add("hat0uma/csvview.nvim")
+-- }}}
 
-later(function()
-	require("csvview").setup({
-		view = {
-			---@type "highlight" | "border"
-			display_mode = "highlight",
-		},
-	})
-end)
+-- csvview.nvim {{{
+require("csvview").setup({
+	view = {
+		---@type "highlight" | "border"
+		display_mode = "highlight",
+	},
+})
+-- }}}
+
+-- vim: fdm=marker fdl=0
