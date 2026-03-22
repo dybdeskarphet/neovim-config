@@ -103,13 +103,6 @@ require("mini.hipatterns").setup({
 })
 -- }}}
 
--- mini.icons {{{
-local icons = require("mini.icons")
-icons.setup()
-icons.mock_nvim_web_devicons()
-icons.tweak_lsp_kind()
--- }}}
-
 -- mini.cursorword + mini.trailspace {{{
 require("mini.cursorword").setup()
 require("mini.trailspace").setup()
