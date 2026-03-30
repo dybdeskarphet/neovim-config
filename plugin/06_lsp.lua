@@ -1,11 +1,12 @@
 later(function()
 	-- Initialize plugins {{{
-	add("stevearc/conform.nvim")
-	add("rafamadriz/friendly-snippets")
-	add({
-		source = "mason-org/mason-lspconfig.nvim",
-		depends = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
-	})
+    add({
+        gh("rafamadriz/friendly-snippets"),
+        gh("stevearc/conform.nvim"),
+        gh("mason-org/mason.nvim"),
+        gh("neovim/nvim-lspconfig"),
+        gh("mason-org/mason-lspconfig.nvim"),
+    })
 	-- }}}
 
 	-- Custom LSP configurations {{{1
@@ -137,6 +138,7 @@ later(function()
 			lua = { "stylua" },
 			python = { "black" },
 			rust = { "rustfmt" },
+			html = { "prettierd", lsp_format = "fallback" },
 			javascript = { "prettierd", "eslint_d", lsp_format = "fallback" },
 			typescript = { "prettierd", "eslint_d", lsp_format = "fallback" },
 			markdown = { "prettierd", lsp_format = "fallback" },

@@ -1,16 +1,23 @@
 later(function()
-	-- Initialize plugins {{{
+	-- Initialize plugins {{{1
 	add({
-		source = "nvim-treesitter/nvim-treesitter",
-		hooks = {
-			post_checkout = function()
-				cmd("TSUpdate")
-			end,
-		},
+		gh("nvim-treesitter/nvim-treesitter"),
+		gh("nvim-treesitter/nvim-treesitter-context"),
+		gh("windwp/nvim-ts-autotag"),
+		gh("nvim-treesitter/nvim-treesitter-textobjects"),
 	})
-	add("nvim-treesitter/nvim-treesitter-context")
-	add("windwp/nvim-ts-autotag")
-	add("nvim-treesitter/nvim-treesitter-textobjects")
+	-- Treesitter hook {{{2
+	vim.api.nvim_create_autocmd("PackChanged", {
+		callback = function(ev)
+			local name, kind = ev.data.spec.name, ev.data.kind
+			if name == "nvim-treesitter" and kind == "update" then
+				if not ev.data.active then
+					vim.cmd.packadd("nvim-treesitter")
+				end
+				vim.cmd("TSUpdate")
+			end
+		end,
+	})
 	-- }}}
 
 	-- nvim-treesitter {{{

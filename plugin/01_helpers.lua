@@ -1,15 +1,17 @@
 -- mini.deps helpers {{{
-later, add = MiniDeps.later, MiniDeps.add
+later = function(callback)
+	require("mini.misc").safely("later", callback)
+end
 -- }}}
 
 -- Vim helpers {{{
-fn = vim.fn
-opt = vim.opt
-go = vim.go
-wo = vim.wo
-cmd = vim.cmd
-g = vim.g
 b = vim.b
+cmd = vim.cmd
+fn = vim.fn
+g = vim.g
+go = vim.go
+opt = vim.opt
+wo = vim.wo
 -- }}}
 
 -- Keymap helpers {{{
@@ -63,28 +65,6 @@ function toEpoch(dateStr)
 end
 -- }}}
 
--- Highlight helpers {{{
-function set_highlights(tbl)
-	for group, opts in pairs(tbl) do
-		vim.api.nvim_set_hl(0, group, opts)
-	end
-end
-
-function set_hl_color(group_name, fg_color, bg_color)
-	local hl = vim.api.nvim_get_hl(0, { name = group_name })
-
-	if fg_color then
-		hl.fg = fg_color
-	end
-
-	if bg_color then
-		hl.bg = bg_color
-	end
-
-	vim.api.nvim_set_hl(0, group_name, hl)
-end
--- }}}
-
 -- mini.notify {{{1
 require("mini.notify").setup({
 	lsp_progress = {
@@ -100,6 +80,57 @@ vim.notify = require("mini.notify").make_notify({
 	OFF = { duration = 0, hl_group = "MiniNotifyNormal" },
 })
 notify = vim.notify
+-- }}}
+
+-- vim.pack {{{
+add = vim.pack.add
+ver = vim.version.range
+gh = function(x)
+	return "https://github.com/" .. x
+end
+
+local function complete_packages(arg_lead)
+	arg_lead = arg_lead or ""
+
+	return vim.iter(vim.pack.get())
+		:map(function(pack)
+			return pack.spec.name
+		end)
+		:filter(function(name)
+			return vim.startswith(name, arg_lead)
+		end)
+		:totable()
+end
+
+vim.api.nvim_create_user_command("PackUpdate", function(info)
+	if #info.fargs ~= 0 then
+		vim.pack.update(info.fargs, { force = info.bang })
+	else
+		local prompt = "Do you want to update ALL packages?"
+		local choice = vim.fn.confirm(prompt, "&Yes\n&No", 2)
+
+		if choice == 1 then
+			vim.notify("Updating everything.", vim.log.levels.INFO)
+			vim.pack.update(complete_packages(), { force = info.bang })
+		else
+			vim.notify("Update aborted.", vim.log.levels.WARN)
+		end
+	end
+end, {
+	desc = "Update packages",
+	nargs = "*",
+	bang = true,
+	complete = complete_packages,
+})
+
+vim.api.nvim_create_user_command("PackDelete", function(info)
+	vim.pack.del(info.fargs, { force = info.bang })
+end, {
+	desc = "Delete packages",
+	nargs = "+",
+	bang = true,
+	complete = complete_packages,
+})
 -- }}}
 
 -- vim: fdm=marker fdl=0

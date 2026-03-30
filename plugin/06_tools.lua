@@ -1,8 +1,10 @@
 later(function()
 	-- Initialize plugins {{{
-	add("https://git.sr.ht/~nedia/auto-save.nvim")
-	add("brenoprata10/nvim-highlight-colors")
-	add("mbbill/undotree")
+	add({
+		"https://git.sr.ht/~nedia/auto-save.nvim",
+		gh("brenoprata10/nvim-highlight-colors"),
+		gh("mbbill/undotree"),
+	})
 	-- }}}
 
 	-- mbbill/undotree {{{
@@ -195,7 +197,11 @@ later(function()
 	-- }}}
 
 	-- mini.cmdline {{{
-	require("mini.cmdline").setup()
+	require("mini.cmdline").setup({
+		autocomplete = {
+			delay = 600,
+		},
+	})
 	-- }}}
 
 	-- mini.notify, show history mapping {{{

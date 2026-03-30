@@ -1,11 +1,11 @@
 -- Initialize plugins {{{
 add({
-	source = "saghen/blink.cmp",
-	depends = {
-		"rafamadriz/friendly-snippets",
-		"bydlw98/blink-cmp-env",
+	gh("rafamadriz/friendly-snippets"),
+	gh("bydlw98/blink-cmp-env"),
+	{
+		src = gh("saghen/blink.cmp"),
+		version = ver("1.9"),
 	},
-	checkout = "v1.9.1",
 })
 -- }}}
 

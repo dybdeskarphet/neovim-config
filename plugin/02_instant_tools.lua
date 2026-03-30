@@ -1,6 +1,8 @@
 -- Initialize plugins {{{
-add("lervag/vimtex")
-add("phrmendes/todotxt.nvim")
+add({
+	gh("lervag/vimtex"),
+	gh("phrmendes/todotxt.nvim"),
+})
 -- }}}
 
 -- vimtex {{{

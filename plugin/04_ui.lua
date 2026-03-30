@@ -1,5 +1,6 @@
 -- Initialize plugins {{{
-add("dybdeskarphet/gruvbox-minimal.nvim")
+-- add("dybdeskarphet/gruvbox-minimal.nvim")
+opt.rtp:prepend("~/code/git/gruvbox-minimal.nvim/")
 -- }}}
 
 -- mini.indent {{{
@@ -109,8 +110,21 @@ require("mini.trailspace").setup()
 -- }}}
 
 -- gruvbox-minimal.nvim {{{
-require("gruvbox-minimal").setup()
+gruvbox_config = {
+	transparent = true,
+}
+require("gruvbox-minimal").setup(gruvbox_config)
 vim.cmd.colorscheme("gruvbox-minimal")
+nm("<leader>R", function()
+	for name, _ in pairs(package.loaded) do
+		if name:match("gruvbox%-minimal") then
+			package.loaded[name] = nil
+		end
+	end
+	require("gruvbox-minimal").setup(gruvbox_config)
+	cmd.colorscheme("gruvbox-minimal")
+	notify("Gruvbox Minimal reloaded.")
+end, "Reload gruvbox-minimal.nvim")
 -- }}}
 
 -- vim: fdm=marker fdl=0

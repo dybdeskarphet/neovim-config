@@ -1,6 +1,6 @@
 later(function()
 	-- Initialize plugins {{{
-	add("Vigemus/iron.nvim")
+	add({ gh("Vigemus/iron.nvim") })
 	-- }}}
 
 	-- iron.nvim {{{
