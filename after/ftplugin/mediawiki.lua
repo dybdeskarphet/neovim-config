@@ -1,1 +1,1 @@
-add("m-pilia/vim-mediawiki")
+add({ gh("m-pilia/vim-mediawiki") })

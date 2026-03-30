@@ -1,45 +1,36 @@
 -- Initialize plugins {{{
-local build_markdown_preview = function(ctx)
-	local plugin_path = ctx.path
+vim.api.nvim_create_autocmd("PackChanged", {
+	desc = "Build markdown-preview.nvim on install or update",
+	callback = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if name == "markdown-preview.nvim" and (kind == "install" or kind == "update") then
+			local plugin_path = ev.data.path
 
-	if vim.fn.isdirectory(plugin_path) == 1 then
-		notify("Starting npm install in " .. plugin_path .. "...", vim.log.levels.INFO)
-
-		vim.system({ "npm", "install" }, { cwd = plugin_path }, function(obj)
-			vim.schedule(function()
-				if obj.code == 0 then
-					notify("npm install finished successfully!", vim.log.levels.INFO)
-				else
-					notify("npm install failed:\n" .. obj.stderr, vim.log.levels.ERROR)
-				end
-			end)
-		end)
-	else
-		notify("Plugin directory not found: " .. plugin_path, vim.log.levels.ERROR)
-	end
-end
-
-add({
-	source = "iamcco/markdown-preview.nvim",
-	hooks = {
-		post_install = build_markdown_preview,
-		post_checkout = build_markdown_preview,
-	},
+			if vim.fn.isdirectory(plugin_path) == 1 then
+				vim.notify("Starting npm install in " .. plugin_path .. "...", vim.log.levels.INFO)
+				vim.system({ "npm", "install" }, { cwd = plugin_path }, function(obj)
+					vim.schedule(function()
+						if obj.code == 0 then
+							vim.notify("npm install finished successfully!", vim.log.levels.INFO)
+						else
+							vim.notify("npm install failed:\n" .. obj.stderr, vim.log.levels.ERROR)
+						end
+					end)
+				end)
+			else
+				vim.notify("Plugin directory not found: " .. plugin_path, vim.log.levels.ERROR)
+			end
+		end
+	end,
 })
 
 add({
-	source = "arminveres/md-pdf.nvim",
-	checkout = "main",
+	gh("nvim-treesitter/nvim-treesitter"),
+	gh("MeanderingProgrammer/render-markdown.nvim"),
+	gh("iamcco/markdown-preview.nvim"),
+	gh("arminveres/md-pdf.nvim"),
+	gh("Myzel394/easytables.nvim"),
 })
-
-add({
-	source = "MeanderingProgrammer/render-markdown.nvim",
-	depends = {
-		"nvim-treesitter/nvim-treesitter",
-	},
-})
-
-add("Myzel394/easytables.nvim")
 -- }}}
 
 -- markdown-preview.nvim {{{
@@ -52,7 +43,7 @@ vim.cmd([[
     function! OpenMarkdownPreviewBridge(url)
       call v:lua.open_markdown_preview(a:url)
     endfunction
-    ]])
+]])
 
 g.mkdp_browserfunc = "OpenMarkdownPreviewBridge"
 g.mkdp_filetypes = { "markdown" }
