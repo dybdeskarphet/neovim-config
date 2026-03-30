@@ -1,17 +1,22 @@
 later(function()
 	-- Initialize plugins {{{
-    add({
-        gh("rafamadriz/friendly-snippets"),
-        gh("stevearc/conform.nvim"),
-        gh("mason-org/mason.nvim"),
-        gh("neovim/nvim-lspconfig"),
-        gh("mason-org/mason-lspconfig.nvim"),
-    })
+	add({
+		gh("rafamadriz/friendly-snippets"),
+		gh("stevearc/conform.nvim"),
+		gh("mason-org/mason.nvim"),
+		gh("neovim/nvim-lspconfig"),
+		gh("mason-org/mason-lspconfig.nvim"),
+	})
 	-- }}}
 
 	-- Custom LSP configurations {{{1
 	-- basedpyright {{{2
 	vim.lsp.config("basedpyright", {
+		capabilities = {
+			window = {
+				workDoneProgress = false,
+			},
+		},
 		root_markers = {
 			"pyproject.toml",
 			"setup.py",
