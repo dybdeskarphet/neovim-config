@@ -224,10 +224,10 @@ later(function()
 		lsp.buf.declaration()
 	end, "Goto Declaration")
 
-	nm("<leader>lR", "<cmd>LspRestart<cr>", "Restart LSP")
-	nm("<leader>li", "<cmd>LspInfo<cr>", "Get LSP info")
-	nm("<leader>lp", "<cmd>LspStop<cr>", "Stop LSP")
-	nm("<leader>ls", "<cmd>LspStart<cr>", "Start LSP")
+	nm("<leader>lR", "<cmd>lsp restart<cr>", "Restart LSP")
+	nm("<leader>li", "<cmd>checkhealth vim.lsp<cr>", "Get LSP info")
+	nm("<leader>lp", "<cmd>lsp stop<cr>", "Stop LSP")
+	nm("<leader>ls", "<cmd>lsp start<cr>", "Start LSP")
 	-- }}}
 end)
 -- vim: fdm=marker fdl=0
