@@ -114,7 +114,7 @@ gruvbox_config = {
 	transparent = true,
 }
 require("gruvbox-minimal").setup(gruvbox_config)
-vim.cmd.colorscheme("gruvbox-minimal")
+cmd.colorscheme("gruvbox-minimal")
 nm("<leader>R", function()
 	for name, _ in pairs(package.loaded) do
 		if name:match("gruvbox%-minimal") then
