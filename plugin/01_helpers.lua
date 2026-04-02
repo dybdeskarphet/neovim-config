@@ -111,7 +111,7 @@ vim.api.nvim_create_user_command("PackUpdate", function(info)
 
 		if choice == 1 then
 			vim.notify("Updating everything.", vim.log.levels.INFO)
-			vim.pack.update(complete_packages(), { force = info.bang })
+			vim.pack.update(nil, { force = info.bang })
 		else
 			vim.notify("Update aborted.", vim.log.levels.WARN)
 		end
