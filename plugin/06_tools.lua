@@ -3,12 +3,20 @@ later(function()
 	add({
 		"https://git.sr.ht/~nedia/auto-save.nvim",
 		gh("brenoprata10/nvim-highlight-colors"),
-		gh("mbbill/undotree"),
 	})
 	-- }}}
 
+	-- auto nohlsearch {{{
+	cmd.packadd("nohlsearch")
+	-- }}}
+
 	-- mbbill/undotree {{{
-	nm("<leader>u", "<cmd>UndotreeToggle<cr>", "Toggle Undotree")
+	cmd.packadd("nvim.undotree")
+	nm("<leader>u", function()
+		require("undotree").open({
+			command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+		})
+	end, "Toggle Undotree")
 	-- }}}
 
 	-- mini.files {{{
