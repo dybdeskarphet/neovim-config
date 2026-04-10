@@ -65,7 +65,6 @@ require("md-pdf").setup({
 
 -- render-markdown.nvim {{{
 require("render-markdown").setup({
-
 	heading = {
 		enabled = true,
 		sign = true,
