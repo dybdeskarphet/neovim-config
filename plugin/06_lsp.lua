@@ -101,6 +101,7 @@ later(function()
 		ensure_installed = {
 			"lua_ls",
 			"fish_lsp",
+			"tailwindcss",
 			"basedpyright",
 			"rust_analyzer",
 			"marksman",
@@ -114,12 +115,14 @@ later(function()
 			"sqlls",
 			"csharp_ls",
 			"taplo",
+			"ltex_plus",
+			"svelte",
 		},
 		automatic_enable = true,
 	})
 	-- }}}
 	-- Tool installation {{{2
-	local other_packages = { "prettierd", "stylua", "black", "eslint_d", "rustfmt", "shfmt" }
+	local other_packages = { "prettierd", "prettier", "stylua", "black", "eslint_d", "rustfmt", "shfmt" }
 	local registry = require("mason-registry")
 	local function ensure_installed()
 		for _, tool in ipairs(other_packages) do
@@ -144,11 +147,12 @@ later(function()
 			python = { "black" },
 			rust = { "rustfmt" },
 			html = { "prettierd", lsp_format = "fallback" },
-			javascript = { "prettierd", "eslint_d", lsp_format = "fallback" },
-			typescript = { "prettierd", "eslint_d", lsp_format = "fallback" },
+			javascript = { "prettierd", lsp_format = "fallback" },
+			typescript = { "prettierd", lsp_format = "fallback" },
+			svelte = { "prettier", lsp_format = "fallback" },
 			markdown = { "prettierd", lsp_format = "fallback" },
-			typescriptreact = { "prettierd", "eslint_d", lsp_format = "fallback" },
-			javascriptreact = { "prettierd", "eslint_d", lsp_format = "fallback" },
+			typescriptreact = { "prettierd", lsp_format = "fallback" },
+			javascriptreact = { "prettierd", lsp_format = "fallback" },
 			sh = { "shfmt" },
 			toml = { "taplo", lsp_format = "fallback" },
 			fish = { lsp_format = "prefer" },
