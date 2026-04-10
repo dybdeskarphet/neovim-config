@@ -70,6 +70,10 @@ opt.relativenumber = true
 opt.termguicolors = true
 -- }}}
 
+-- <C-a>/<C-x> tweaks {{{
+opt.nf = "unsigned,bin,hex"
+-- }}}
+
 -- Disable Plugin Maps {{{
 g.no_plugin_maps = true
 -- }}}
