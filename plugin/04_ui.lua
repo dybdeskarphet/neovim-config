@@ -38,6 +38,20 @@ starter.setup({
 })
 -- }}}
 
+-- mini.tabline {{{
+require("mini.tabline").setup({
+	show_icons = true,
+	format = function(buf_id, label)
+		local suffix = vim.bo[buf_id].modified and " " or " "
+		local prefix = (function(buf_id)
+			return buf_id == vim.api.nvim_get_current_buf() and "▎" or "▏"
+		end)(buf_id)
+		return prefix .. MiniTabline.default_format(buf_id, label) .. suffix
+	end,
+	tabpage_section = "left",
+})
+-- }}}
+
 -- mini.statusline {{{
 local diag_signs = {
 	HINT = "%#DiagnosticHint#󰌶 ",

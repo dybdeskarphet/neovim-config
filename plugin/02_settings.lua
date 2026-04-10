@@ -177,5 +177,9 @@ map("n", "<esc><esc>", ":noh<cr>", { noremap = true, silent = true, desc = "Clea
 nm("<leader>\\", "<cmd>vsplit<cr>", "Create a vertical split")
 nm("<leader>-", "<cmd>split<cr>", "Create a horizontal split")
 -- }}}
+-- Buffer movement {{{2
+nm("<A-l>", "<cmd>bn<cr>", "Focus on the next buffer")
+nm("<A-h>", "<cmd>bp<cr>", "Focus on the previous buffer")
+-- }}}
 
 -- vim: fdm=marker fdl=0
