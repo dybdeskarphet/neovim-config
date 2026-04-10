@@ -3,15 +3,6 @@
 opt.rtp:prepend("~/code/git/gruvbox-minimal.nvim/")
 -- }}}
 
--- mini.indent {{{
-require("mini.indentscope").setup({
-	symbol = "│",
-	options = {
-		border = "both",
-	},
-})
--- }}}
-
 -- mini.starter {{{
 local starter = require("mini.starter")
 starter.setup({
@@ -90,39 +81,6 @@ require("mini.statusline").setup({
 })
 -- }}}
 
--- mini.hipatterns {{{
-local hi_words = require("mini.extra").gen_highlighter.words
-require("mini.hipatterns").setup({
-	highlighters = {
-		todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),
-		fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
-		hack = hi_words({ "HACK", "Hack", "hack" }, "MiniHipatternsHack"),
-		note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
-		due_date = {
-			pattern = "due:%d%d%d%d%-%d%d%-%d%d",
-			group = function(_, match)
-				local today = os.date("%Y-%m-%d")
-				local today_ts = toEpoch(today)
-				local match_ts = toEpoch(match:match("due:(%d%d%d%d%-%d%d%-%d%d)"))
-
-				if match == "due:" .. today then
-					return "MiniHipatternsDueToday"
-				elseif match_ts < today_ts then
-					return "MiniHipatternsDueLate"
-				else
-					return "MiniHipatternsDueGeneral"
-				end
-			end,
-		},
-	},
-})
--- }}}
-
--- mini.cursorword + mini.trailspace {{{
-require("mini.cursorword").setup()
-require("mini.trailspace").setup()
--- }}}
-
 -- gruvbox-minimal.nvim {{{
 gruvbox_config = {
 	transparent = true,
@@ -139,6 +97,102 @@ nm("<leader>R", function()
 	cmd.colorscheme("gruvbox-minimal")
 	notify("Gruvbox Minimal reloaded.")
 end, "Reload gruvbox-minimal.nvim")
+-- }}}
+
+-- ui2 {{{
+-- opt.cmdheight = 0
+require("vim._core.ui2").enable({
+	enable = true,
+	msg = {
+		targets = {
+			[""] = "msg",
+			empty = "cmd",
+			bufwrite = "msg",
+			confirm = "cmd",
+			emsg = "pager",
+			echo = "msg",
+			echomsg = "msg",
+			echoerr = "pager",
+			completion = "cmd",
+			list_cmd = "pager",
+			lua_error = "pager",
+			lua_print = "msg",
+			progress = "pager",
+			rpc_error = "pager",
+			quickfix = "msg",
+			search_cmd = "cmd",
+			search_count = "cmd",
+			shell_cmd = "pager",
+			shell_err = "pager",
+			shell_out = "pager",
+			shell_ret = "msg",
+			undo = "msg",
+			verbose = "pager",
+			wildlist = "cmd",
+			wmsg = "msg",
+			typed_cmd = "cmd",
+		},
+		cmd = {
+			height = 0.5,
+		},
+		dialog = {
+			height = 0.5,
+		},
+		msg = {
+			height = 0.3,
+			timeout = 5000,
+		},
+		pager = {
+			height = 0.5,
+		},
+	},
+})
+-- }}}
+
+-- Run later {{{1
+later(function()
+	-- mini.indent {{{2
+	require("mini.indentscope").setup({
+		symbol = "│",
+		options = {
+			border = "both",
+		},
+	})
+	-- }}}
+
+	-- mini.cursorword + mini.trailspace {{{
+	require("mini.cursorword").setup()
+	require("mini.trailspace").setup()
+	-- }}}
+
+	-- mini.hipatterns {{{
+	local hi_words = require("mini.extra").gen_highlighter.words
+	require("mini.hipatterns").setup({
+		highlighters = {
+			todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),
+			fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
+			hack = hi_words({ "HACK", "Hack", "hack" }, "MiniHipatternsHack"),
+			note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
+			due_date = {
+				pattern = "due:%d%d%d%d%-%d%d%-%d%d",
+				group = function(_, match)
+					local today = os.date("%Y-%m-%d")
+					local today_ts = toEpoch(today)
+					local match_ts = toEpoch(match:match("due:(%d%d%d%d%-%d%d%-%d%d)"))
+
+					if match == "due:" .. today then
+						return "MiniHipatternsDueToday"
+					elseif match_ts < today_ts then
+						return "MiniHipatternsDueLate"
+					else
+						return "MiniHipatternsDueGeneral"
+					end
+				end,
+			},
+		},
+	})
+	-- }}}
+end)
 -- }}}
 
 -- vim: fdm=marker fdl=0
