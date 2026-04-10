@@ -131,6 +131,35 @@ end, {
 	bang = true,
 	complete = complete_packages,
 })
+
+vim.api.nvim_create_user_command("PackInfo", function()
+	local pack_data = vim.pack.get()
+
+	local lines = {
+		"# Neovim Plugin Status",
+		"",
+		"| Plugin Name | Active | Revision | Source |",
+		"| :--- | :---: | :--- | :--- |",
+	}
+
+	for _, plugin in ipairs(pack_data) do
+		local name = plugin.spec and plugin.spec.name or "Unknown"
+		local active = plugin.active and "✅" or "❌"
+		local rev = plugin.rev and string.sub(plugin.rev, 1, 7) or "-"
+		local src = plugin.spec and plugin.spec.src or "-"
+		local row = string.format("| **%s** | %s | `%s` | %s |", name, active, rev, src)
+		table.insert(lines, row)
+	end
+
+	vim.cmd("enew")
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+
+	vim.bo.buftype = "nofile"
+	vim.bo.bufhidden = "wipe"
+	vim.bo.swapfile = false
+	vim.bo.filetype = "markdown"
+end, { desc = "Show all packages" })
+
 -- }}}
 
 -- vim: fdm=marker fdl=0
