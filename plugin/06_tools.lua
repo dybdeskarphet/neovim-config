@@ -1,3 +1,10 @@
+-- vimtex {{{
+add({ gh("lervag/vimtex") })
+g.vimtex_view_method = "zathura"
+g.vimtex_view_general_viewer = "zathura"
+g.vimtex_compiler_method = "latexrun"
+-- }}}
+
 later(function()
 	-- Initialize plugins {{{
 	add({
