@@ -1,5 +1,5 @@
 -- Initialize plugins {{{
-add({ "hat0uma/csvview.nvim" })
+add({ gh("hat0uma/csvview.nvim") })
 -- }}}
 
 -- csvview.nvim {{{
