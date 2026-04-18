@@ -27,7 +27,11 @@ later(function()
 	-- }}}
 
 	-- mini.files {{{
-	require("mini.files").setup()
+	require("mini.files").setup({
+		options = {
+			permanent_delete = false,
+		},
+	})
 	local map_split = function(buf_id, lhs, direction)
 		local rhs = function()
 			local cur_target = MiniFiles.get_explorer_state().target_window
