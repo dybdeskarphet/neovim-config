@@ -33,19 +33,7 @@ add({
 })
 -- }}}
 
--- markdown-preview.nvim {{{
-_G.open_markdown_preview = function(url)
-	local cmd = { "chromium", "--app=", url }
-	vim.fn.jobstart(cmd, { detach = true })
-end
-
-vim.cmd([[
-    function! OpenMarkdownPreviewBridge(url)
-      call v:lua.open_markdown_preview(a:url)
-    endfunction
-]])
-
-g.mkdp_browserfunc = "OpenMarkdownPreviewBridge"
+g.mkdp_browser = "chromium"
 g.mkdp_filetypes = { "markdown" }
 g.mkdp_page_title = "${name}"
 g.mkdp_port = "9033"
@@ -54,6 +42,8 @@ g.mkdp_auto_close = 0
 
 -- md-pdf.nvim {{{
 require("md-pdf").setup({
+	margins = "1.0cm",
+	toc = false,
 	pandoc_user_args = {
 		"-V lang=tr", -- long options
 	},
