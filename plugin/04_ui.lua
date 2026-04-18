@@ -1,6 +1,5 @@
 -- Initialize plugins {{{
--- add("dybdeskarphet/gruvbox-minimal.nvim")
-opt.rtp:prepend("~/code/git/gruvbox-minimal.nvim/")
+add("dybdeskarphet/gruvbox-minimal.nvim")
 -- }}}
 
 -- mini.starter {{{
