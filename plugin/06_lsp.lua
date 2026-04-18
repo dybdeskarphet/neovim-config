@@ -6,6 +6,7 @@ later(function()
 		gh("mason-org/mason.nvim"),
 		gh("neovim/nvim-lspconfig"),
 		gh("mason-org/mason-lspconfig.nvim"),
+		gh("kosayoda/nvim-lightbulb"),
 	})
 	-- }}}
 
@@ -232,6 +233,48 @@ later(function()
 	nm("<leader>li", "<cmd>checkhealth vim.lsp<cr>", "Get LSP info")
 	nm("<leader>lp", "<cmd>lsp stop<cr>", "Stop LSP")
 	nm("<leader>ls", "<cmd>lsp start<cr>", "Start LSP")
+	-- }}}
+
+	-- mini.files LSP automations {{{1
+	-- LSP Rename for mini.files {{{2
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniFilesActionRename",
+		desc = "Auto-update imports when renaming a file in mini.files",
+		callback = function(event)
+			local old_uri = vim.uri_from_fname(event.data.from)
+			local new_uri = vim.uri_from_fname(event.data.to)
+
+			local clients = vim.lsp.get_clients()
+			for _, client in ipairs(clients) do
+				if client:supports_method("workspace/willRenameFiles") then
+					local active_bufnr = next(client.attached_buffers)
+
+					if active_bufnr then
+						local params = {
+							files = {
+								{ oldUri = old_uri, newUri = new_uri },
+							},
+						}
+
+						local resp = client:request_sync("workspace/willRenameFiles", params, 1000, active_bufnr)
+
+						if resp and resp.result ~= nil then
+							vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
+						end
+					end
+				end
+			end
+		end,
+	})
+	-- }}}
+	-- }}}
+
+	-- Show code actions bulb {{{
+	require("nvim-lightbulb").setup({
+		autocmd = { enabled = true },
+		sign = { enabled = false, text = "" },
+		virtual_text = { enabled = true, text = "" },
+	})
 	-- }}}
 end)
 -- vim: fdm=marker fdl=0
