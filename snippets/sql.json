@@ -1,0 +1,10 @@
+{
+  "SQL Block": {
+    "prefix": "bl",
+    "body": [
+      "-- @block",
+      "$1"
+    ],
+    "description": "Insert a Jupyter markdown cell block"
+  }
+}

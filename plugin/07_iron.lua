@@ -3,7 +3,24 @@ later(function()
 	add({ gh("Vigemus/iron.nvim") })
 	-- }}}
 
-	-- iron.nvim {{{
+	-- iron.nvim {{{1
+	-- SQL REPL command with database finder {{{2
+	local function get_first_local_db()
+		local files = vim.fn.glob("*.{db,sqlite,sqlite3}", true, true)
+		if #files > 0 then
+			return files[1]
+		end
+		return nil
+	end
+
+	local db_file = get_first_local_db()
+	local sql_cmd = { "sqlite3" }
+
+	if db_file then
+		table.insert(sql_cmd, db_file)
+	end
+	-- }}}
+	-- Setup {{{2
 	local iron = require("iron.core")
 	local view = require("iron.view")
 	local common = require("iron.fts.common")
@@ -19,15 +36,37 @@ later(function()
 					block_dividers = { "# %%", "#%%" },
 					env = { PYTHON_BASIC_REPL = "1" },
 				},
-			},
+				sql = {
+					command = sql_cmd,
+					block_dividers = { "-- @block", "--@block" },
+					format = function(lines)
+						local clean_lines = {}
 
+						for _, line in ipairs(lines) do
+							if not string.match(line, "^%s*%-%-%s*@block") then
+								table.insert(clean_lines, line)
+							end
+						end
+
+						return { table.concat(clean_lines, " ") .. "\r" }
+					end,
+				},
+			},
 			repl_filetype = function(bufnr, ft)
 				return ft
 			end,
-
 			dap_integration = true,
+			repl_open_cmd = function()
+				local current_ft = vim.bo.filetype
 
-			repl_open_cmd = view.split.vertical.rightbelow("%40"),
+				if current_ft == "sql" then
+					vim.cmd("botright 25 split")
+				else
+					vim.cmd("botright 50 vsplit")
+				end
+
+				return vim.api.nvim_get_current_win()
+			end,
 		},
 
 		highlight = {
@@ -36,6 +75,7 @@ later(function()
 
 		ignore_blank_lines = true,
 	})
+	-- }}}
 	--- }}}
 
 	-- Keybindings {{{
