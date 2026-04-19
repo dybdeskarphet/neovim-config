@@ -1,8 +1,44 @@
+-- Initialize plugins {{{
+add({ gh("lervag/vimtex"), gh("phrmendes/todotxt.nvim") })
+-- }}}
+
 -- vimtex {{{
-add({ gh("lervag/vimtex") })
 g.vimtex_view_method = "zathura"
 g.vimtex_view_general_viewer = "zathura"
 g.vimtex_compiler_method = "latexrun"
+-- }}}
+
+-- todotxt {{{1
+-- Setup {{{2
+require("todotxt").setup({
+	todotxt = vim.env.HOME .. "/doc/current.todo.txt",
+	donetxt = vim.env.HOME .. "/doc/done.todo.txt",
+	ghost_text = {
+		enable = true,
+		mappings = {
+			["(A)"] = "important, urgent",
+			["(B)"] = "important, not urgent",
+			["(C)"] = "not important, urgent",
+			["(D)"] = "not important, not urgent",
+		},
+	},
+})
+-- }}}
+-- Keymaps {{{2
+local todo = require("todotxt")
+nm("<leader>sn", todo.capture_todo, "New todo entry")
+nm("<leader>st", todo.toggle_todotxt, "Toggle todo.txt")
+nm("<leader>sd", todo.toggle_donetxt, "<cmd>DoneTxt<cr>", "Toggle done.txt")
+nm("<leader>sg", todo.toggle_ghost_text, "Toggle ghost text")
+nm("<cr>", todo.toggle_todo_state, "Toggle task state")
+nm("<c-c>n", todo.cycle_priority, "Cycle priority")
+nm("<leader>sm", todo.move_done_tasks, "Move done tasks")
+nm("<leader>sss", todo.sort_tasks, "Sort tasks (default)")
+nm("<leader>ssp", todo.sort_tasks_by_priority, "Sort by priority")
+nm("<leader>ssc", todo.sort_tasks_by_context, "Sort by context")
+nm("<leader>ssP", todo.sort_tasks_by_project, "Sort by project")
+nm("<leader>ssd", todo.sort_tasks_by_due_date, "Sort by due date")
+-- }}}
 -- }}}
 
 later(function()
