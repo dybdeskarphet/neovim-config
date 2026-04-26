@@ -221,13 +221,13 @@ later(function()
 		MiniExtra.pickers.lsp({ scope = "references" })
 	end, "List references")
 
-	nm("<leader>ld", function()
+	nm("gd", function()
 		lsp.buf.definition()
 	end, "Go to definition")
 
-	nm("<leader>lD", function()
+	nm("gD", function()
 		lsp.buf.declaration()
-	end, "Goto Declaration")
+	end, "Go to Declaration")
 
 	nm("<leader>lR", "<cmd>lsp restart<cr>", "Restart LSP")
 	nm("<leader>li", "<cmd>checkhealth vim.lsp<cr>", "Get LSP info")
