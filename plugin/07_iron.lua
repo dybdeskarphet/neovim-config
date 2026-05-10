@@ -62,7 +62,7 @@ later(function()
 				if current_ft == "sql" then
 					vim.cmd("botright 25 split")
 				else
-					vim.cmd("botright 50 vsplit")
+					vim.cmd("botright 100 vsplit")
 				end
 
 				return vim.api.nvim_get_current_win()
