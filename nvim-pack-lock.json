@@ -29,6 +29,10 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gruvbox-minimal.nvim": {
+      "rev": "f0d5efc547a7c84c0b1359eed37da11546c76a03",
+      "src": "https://github.com/dybdeskarphet/gruvbox-minimal.nvim"
+    },
     "iron.nvim": {
       "rev": "88cd340407b959f1168af2a6ae5a3d180e6df32c",
       "src": "https://github.com/Vigemus/iron.nvim"

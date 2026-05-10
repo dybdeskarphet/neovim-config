@@ -1,5 +1,5 @@
 -- Initialize plugins {{{
-add("dybdeskarphet/gruvbox-minimal.nvim")
+add({ gh("dybdeskarphet/gruvbox-minimal.nvim") })
 -- }}}
 
 -- mini.starter {{{
