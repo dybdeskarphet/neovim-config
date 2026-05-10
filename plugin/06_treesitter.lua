@@ -1,45 +1,33 @@
 later(function()
 	-- Initialize plugins {{{1
 	add({
-		gh("nvim-treesitter/nvim-treesitter"),
+		gh("romus204/tree-sitter-manager.nvim"),
 		gh("nvim-treesitter/nvim-treesitter-context"),
 		gh("windwp/nvim-ts-autotag"),
 		gh("nvim-treesitter/nvim-treesitter-textobjects"),
 	})
-	-- Treesitter hook {{{2
-	vim.api.nvim_create_autocmd("PackChanged", {
-		callback = function(ev)
-			local name, kind = ev.data.spec.name, ev.data.kind
-			if name == "nvim-treesitter" and kind == "update" then
-				if not ev.data.active then
-					vim.cmd.packadd("nvim-treesitter")
-				end
-				vim.cmd("TSUpdate")
-			end
-		end,
-	})
-	-- }}}
-
 	-- nvim-treesitter {{{
-	local treesitter = require("nvim-treesitter")
-	treesitter.install({
-		"lua",
-		"toml",
-		"typescript",
-		"javascript",
-		"python",
-		"rust",
-		"hyprlang",
-		"latex",
-		"markdown",
-		"markdown_inline",
-		"csv",
-		"html",
-		"htmldjango",
-		"tsx",
-		"sql",
-		"c_sharp",
-		"todotxt",
+	require("tree-sitter-manager").setup({
+		ensure_installed = {
+			"lua",
+			"toml",
+			"typescript",
+			"javascript",
+			"python",
+			"rust",
+			"hyprlang",
+			"latex",
+			"markdown",
+			"markdown_inline",
+			"csv",
+			"html",
+			"htmldjango",
+			"tsx",
+			"sql",
+			"c_sharp",
+			"todotxt",
+		},
+		auto_install = true,
 	})
 
 	vim.api.nvim_create_autocmd("FileType", {
