@@ -106,6 +106,32 @@ later(function()
 	nm("<leader>kL", function()
 		iron.send(nil, string.char(12))
 	end, "Send Ctrl-L to REPL")
+	-- Full-screen toggle for REPL window {{{2
+	nm("<leader>kz", function()
+		local term_win = {}
+		for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+			if vim.bo[vim.api.nvim_win_get_buf(win)].buftype == "terminal" then
+				table.insert(term_win, win)
+			end
+		end
+
+		if #term_win ~= 1 then
+			return print("Multiple terminals or no terminal found.")
+		end
+
+		term_win = term_win[1]
+
+		if
+			vim.api.nvim_win_get_width(term_win) > (vim.o.columns * 0.85)
+			and vim.api.nvim_win_get_height(term_win) > (vim.o.lines * 0.85)
+		then
+			vim.cmd("wincmd = | wincmd p")
+		else
+			vim.api.nvim_set_current_win(term_win)
+			vim.cmd("wincmd | | wincmd _")
+		end
+	end, "Toggle terminal zoom by size")
+	-- }}}
 	-- }}}
 end)
 
