@@ -42,10 +42,13 @@ g.mkdp_auto_close = 0
 
 -- md-pdf.nvim {{{
 require("md-pdf").setup({
-	margins = "1.0cm",
+	margins = "2.5cm",
 	toc = false,
 	pandoc_user_args = {
-		"-V lang=tr", -- long options
+		"-V",
+		"lang=tr",
+		"--filter",
+		"mermaid-filter",
 	},
 	preview_cmd = function()
 		return "zathura"
