@@ -1,0 +1,16 @@
+{
+  "Topic parantheses": {
+    "prefix": "topic",
+    "body": [
+      "(**$1**)"
+    ],
+    "description": "Insert topic"
+  },
+  "Due tag": {
+    "prefix": "due",
+    "body": [
+      "**due:**$1"
+    ],
+    "description": "Insert due tag"
+  }
+}
