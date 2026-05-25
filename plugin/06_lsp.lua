@@ -192,7 +192,8 @@ later(function()
 	nm("<leader>F", function()
 		require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
 	end, "Format the buffer")
-	nm("<leader>x", require("mini.extra").pickers.diagnostic, "Toggle trouble")
+	nm("<leader>x", require("mini.extra").pickers.diagnostic, "Toggle diagnostics (clue)")
+	nm("<leader>X", vim.diagnostic.setloclist, "Toggle diagnostics (split)")
 
 	local lsp = vim.lsp
 
