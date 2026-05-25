@@ -51,6 +51,10 @@ later(function()
 						return { table.concat(clean_lines, " ") .. "\r" }
 					end,
 				},
+				lua = {
+					command = { "luajit" },
+					block_dividers = { "-- %%", "--%%" },
+				},
 			},
 			repl_filetype = function(bufnr, ft)
 				return ft
