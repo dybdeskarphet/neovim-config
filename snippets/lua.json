@@ -1,0 +1,10 @@
+{
+  "Lua Block": {
+    "prefix": "bl",
+    "body": [
+      "-- %%",
+      "$1"
+    ],
+    "description": "Insert a Lua cell block"
+  }
+}
