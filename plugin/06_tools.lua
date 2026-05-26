@@ -86,6 +86,14 @@ later(function()
 			prompt_caret = "▏",
 			prompt_prefix = " ",
 		},
+		mappings = {
+			send_to_qflist = {
+				char = "<C-q>",
+				func = function()
+					vim.api.nvim_input("<C-a><M-CR>")
+				end,
+			},
+		},
 	})
 	require("mini.extra").setup()
 	nm("<leader>b", function()
