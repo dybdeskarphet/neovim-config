@@ -71,7 +71,7 @@ require("mini.notify").setup({
 		enable = true,
 	},
 })
-vim.notify = require("mini.notify").make_notify({
+vim.notify = MiniNotify.make_notify({
 	ERROR = { duration = 5000, hl_group = "DiagnosticError" },
 	WARN = { duration = 5000, hl_group = "DiagnosticWarn" },
 	INFO = { duration = 5000, hl_group = "MiniNotifyNormal" },

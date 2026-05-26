@@ -81,10 +81,12 @@ require("mini.statusline").setup({
 -- }}}
 
 -- gruvbox-minimal.nvim {{{
-gruvbox_config = {
+require("gruvbox-minimal").setup({
 	transparent = true,
-}
-require("gruvbox-minimal").setup(gruvbox_config)
+	markdown_docstring = {
+		python = true,
+	},
+})
 cmd.colorscheme("gruvbox-minimal")
 nm("<leader>R", function()
 	for name, _ in pairs(package.loaded) do
@@ -164,8 +166,12 @@ later(function()
 	require("mini.trailspace").setup()
 	-- }}}
 
+	-- mini.extra {{{
+	require("mini.extra").setup()
+	-- }}}
+
 	-- mini.hipatterns {{{
-	local hi_words = require("mini.extra").gen_highlighter.words
+	local hi_words = MiniExtra.gen_highlighter.words
 	require("mini.hipatterns").setup({
 		highlighters = {
 			todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),

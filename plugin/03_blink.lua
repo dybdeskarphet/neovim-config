@@ -11,10 +11,9 @@ later(function()
 	-- }}}
 
 	-- mini.icons {{{
-	local icons = require("mini.icons")
-	icons.setup()
-	icons.mock_nvim_web_devicons()
-	icons.tweak_lsp_kind()
+	require("mini.icons").setup()
+	MiniIcons.mock_nvim_web_devicons()
+	MiniIcons.tweak_lsp_kind()
 	-- }}}
 
 	-- mini.pairs {{{
@@ -81,17 +80,17 @@ later(function()
 					components = {
 						kind_icon = {
 							text = function(ctx)
-								local kind_icon, _, _ = icons.get("lsp", ctx.kind)
+								local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
 								return kind_icon
 							end,
 							highlight = function(ctx)
-								local _, hl, _ = icons.get("lsp", ctx.kind)
+								local _, hl, _ = MiniIcons.get("lsp", ctx.kind)
 								return hl
 							end,
 						},
 						kind = {
 							highlight = function(ctx)
-								local _, hl, _ = icons.get("lsp", ctx.kind)
+								local _, hl, _ = MiniIcons.get("lsp", ctx.kind)
 								return hl
 							end,
 						},

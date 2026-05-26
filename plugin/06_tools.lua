@@ -229,7 +229,7 @@ later(function()
 	-- }}}
 
 	-- mini.notify, show history mapping {{{
-	nm("<leader>h", require("mini.notify").show_history, "Open history")
+	nm("<leader>h", MiniNotify.show_history, "Open history")
 	-- }}}
 end)
 
