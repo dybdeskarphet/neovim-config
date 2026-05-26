@@ -208,7 +208,6 @@ later(function()
 			{ mode = "n", keys = "<leader>S", desc = "+Spellcheck" },
 			{ mode = "n", keys = "<leader>t", desc = "+Pick" },
 			{ mode = "n", keys = "<leader>r", desc = "+REPL" },
-			{ mode = "n", keys = "<leader>s", desc = "+todo.txt" },
 			{ mode = "n", keys = "<leader>tg", desc = "+Git Pick" },
 			{ mode = "n", keys = "<leader>l", desc = "+LSP commands" },
 			clue.gen_clues.square_brackets(),
