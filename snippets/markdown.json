@@ -12,5 +12,22 @@
       "**due:**$1"
     ],
     "description": "Insert due tag"
+  },
+  "Pandoc Sensible Defualts": {
+    "prefix": "ps",
+    "body": [
+      "---",
+      "geometry: margin=2cm",
+      "lof: true",
+      "toc: true",
+      "toc-depth: 3",
+      "lang: tr-TR",
+      "header-includes:",
+      "  - \\usepackage{float}",
+      "  - \\let\\origfigure\\figure",
+      "  - \\let\\endorigfigure\\endfigure",
+      "  - \\renewenvironment{figure}[1][2] {\\expandafter\\origfigure\\expandafter[H]} {\\endorigfigure}",
+      "---"
+    ]
   }
 }
