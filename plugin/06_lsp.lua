@@ -72,14 +72,41 @@ later(function()
 	})
 	-- }}}
 
+	-- nixd {{{2
+	vim.lsp.config("nixd", {
+		cmd = { "nixd" },
+		filetypes = { "nix" },
+		root_markers = { "flake.nix", ".git" },
+		settings = {
+			nixd = {
+				nixpkgs = {
+					expr = "(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.x86_64-linux",
+				},
+				formatting = {
+					command = { "nixfmt" },
+				},
+				options = {
+					nixos = {
+						expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.nixos.options",
+					},
+					["home-manager"] = {
+						expr = "(builtins.getFlake (toString ./.)).nixosConfigurations.nixos.options.home-manager.users.type.getSubOptions []",
+					},
+				},
+			},
+		},
+	})
+	vim.lsp.enable("nixd")
+	-- }}}
+
 	-- taplo {{{2
-	vim.lsp.config["taplo"] = {
+	vim.lsp.config("taplo", {
 		filetypes = { "toml" },
 		root_markers = {
 			"*.toml",
 			".git",
 		},
-	}
+	})
 	-- }}}
 
 	-- tinymist {{{2
@@ -123,7 +150,7 @@ later(function()
 	})
 	-- }}}
 	-- Tool installation {{{2
-	local other_packages = { "prettierd", "prettier", "stylua", "black", "eslint_d", "rustfmt", "shfmt" }
+	local other_packages = { "prettierd", "prettier", "stylua", "black", "eslint_d", "rustfmt", "shfmt", "nixfmt" }
 	local registry = require("mason-registry")
 	local function ensure_installed()
 		for _, tool in ipairs(other_packages) do
@@ -155,6 +182,7 @@ later(function()
 			typescriptreact = { "prettierd", lsp_format = "fallback" },
 			javascriptreact = { "prettierd", lsp_format = "fallback" },
 			sh = { "shfmt" },
+			nix = { "nixfmt", lsp_format = "fallback" },
 			toml = { "taplo", lsp_format = "fallback" },
 			fish = { lsp_format = "prefer" },
 		},
