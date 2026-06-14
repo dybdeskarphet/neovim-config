@@ -22,6 +22,7 @@ later(function()
 			"csv",
 			"html",
 			"htmldjango",
+			"nix",
 			"tsx",
 			"sql",
 			"c_sharp",
