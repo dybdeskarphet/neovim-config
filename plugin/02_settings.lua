@@ -165,7 +165,7 @@ tm("<Esc>", "<C-\\><C-n>", "Exit terminal insert mode")
 -- }}}
 -- Delete a buffer {{{2
 nm("<A-q>", function()
-	MiniBufremove.delete()
+	require("mini.bufremove").delete()
 end, "Delete the buffer")
 -- }}}
 -- Move visual blocks {{{2
