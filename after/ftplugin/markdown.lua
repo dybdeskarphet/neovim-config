@@ -62,7 +62,7 @@ require("render-markdown").setup({
 		enabled = true,
 		sign = true,
 		position = "inline",
-		icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
+		icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
 		signs = { " " },
 		width = "block", -- full, block
 		left_margin = 0,
@@ -141,7 +141,7 @@ require("render-markdown").setup({
 				todo = {
 					raw = "[-]",
 					rendered = "󰥔 ",
-					highlight = "RenderMarkdownTodo",
+					highlight = "String",
 					scope_highlight = nil,
 				},
 			},
@@ -155,6 +155,9 @@ require("render-markdown").setup({
 		position = "center",
 		top_pad = 0,
 		bottom_pad = 0,
+	},
+	code = {
+		border = "thin",
 	},
 })
 -- }}}
