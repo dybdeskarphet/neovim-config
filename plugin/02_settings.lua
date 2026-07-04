@@ -150,10 +150,6 @@ nm("<A-S-k>", "<cmd>wincmd K<cr>", "Move to far top")
 nm("<A-C-k>", "<cmd>vertical resize +5<cr>", "Increase the width of current window")
 nm("<A-C-j>", "<cmd>vertical resize -5<cr>", "Decrease the width of current window")
 -- }}}
--- Buffer Movement {{{2
--- nm("<A-l>", "<cmd>bn<cr>", "Focus on the next buffer")
--- nm("<A-h>", "<cmd>bp<cr>", "Focus on the previous buffer")
--- }}}
 -- Spellcheck {{{2
 nm("<leader>Ss", "<cmd>set spell<cr>", "Enable Turkish spellcheck")
 nm("<leader>Su", "<cmd>set nospell<cr>", "Disable Turkish spellcheck")
