@@ -1,0 +1,15 @@
+geometry: margin=2cm
+lof: false
+toc: true
+toc-depth: 3
+lang: tr-TR
+header-includes:
+  - \usepackage{float}
+  - \usepackage{array}
+  - \usepackage{longtable}
+  - \usepackage{booktabs}
+  - \let\origfigure\figure
+  - \let\endorigfigure\endfigure
+  - \renewenvironment{figure}[1][2] {\expandafter\origfigure\expandafter[H]} {\endorigfigure}
+  - \renewcommand{\arraystretch}{2.2}
+  - \setlength{\tabcolsep}{8pt}

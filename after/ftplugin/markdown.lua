@@ -42,13 +42,15 @@ g.mkdp_auto_close = 0
 
 -- md-pdf.nvim {{{
 require("md-pdf").setup({
-	margins = "2.5cm",
-	toc = false,
+	margins = "2cm",
+	toc = true,
 	pandoc_user_args = {
-		"-V",
-		"lang=tr",
 		"--filter",
 		"mermaid-filter",
+		"--defaults",
+		"alerts",
+		"--metadata-file",
+		vim.fn.stdpath("config") .. "/pandoc/sensible.yaml",
 	},
 	preview_cmd = function()
 		return "zathura"
