@@ -65,6 +65,21 @@ function toEpoch(dateStr)
 end
 -- }}}
 
+-- Wrapper for vim.system to avoid LD_PRELOAD conflicts on Termux {{{
+local original_system = vim.system
+vim.system = function(cmd, opts, on_exit)
+	opts = opts or {}
+	if opts.env then
+		if opts.env.LD_PRELOAD == nil then
+			opts.env.LD_PRELOAD = ""
+		end
+	else
+		opts.env = { LD_PRELOAD = "" }
+	end
+	return original_system(cmd, opts, on_exit)
+end
+-- }}}
+
 -- mini.notify {{{1
 require("mini.notify").setup({
 	lsp_progress = {
