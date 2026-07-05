@@ -41,17 +41,19 @@ g.mkdp_auto_close = 0
 -- }}}
 
 -- md-pdf.nvim {{{
+local margins_val = "1.0cm"
 require("md-pdf").setup({
-	margins = "2.5cm",
+	margins = margins_val,
 	toc = false,
+	pdf_engine = "typst",
 	pandoc_user_args = {
 		"-V",
 		"lang=tr",
-		"--filter",
-		"mermaid-filter",
+		"-V",
+		"margin=" .. margins_val,
 	},
 	preview_cmd = function()
-		return "zathura"
+		return "termux-open"
 	end,
 })
 -- }}}
