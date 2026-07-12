@@ -3,6 +3,7 @@ add({
 	gh("lervag/vimtex"),
 	gh("phrmendes/todotxt.nvim"),
 })
+-- vim.opt.rtp:prepend(vim.fn.expand("~/code/git/todotxt.nvim/"))
 -- }}}
 
 -- vimtex {{{
@@ -278,7 +279,20 @@ later(function()
 	-- }}}
 
 	-- mini.notify, show history mapping {{{
-	nm("<leader>h", MiniNotify.show_history, "Open history")
+	nm("<leader>hn", MiniNotify.show_history, "Open history")
+	vim.api.nvim_create_user_command("Messages", function()
+		local buf = vim.api.nvim_create_buf(false, true)
+
+		cmd("vsplit")
+		vim.api.nvim_win_set_buf(0, buf)
+
+		local msgs = fn.execute("messages")
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(msgs, "\n"))
+
+		vim.bo[buf].modifiable = false
+		map("n", "q", "<cmd>close<cr>", { buffer = buf, silent = true })
+	end, { desc = "Close messages" })
+	nm("<leader>hm", "<cmd>Messages<cr>", "Open messages")
 	-- }}}
 end)
 
