@@ -1,6 +1,7 @@
 -- Initialize plugins {{{
 add({
 	gh("lervag/vimtex"),
+	gh("phrmendes/todotxt.nvim"),
 })
 -- }}}
 
@@ -8,6 +9,47 @@ add({
 g.vimtex_view_method = "zathura"
 g.vimtex_view_general_viewer = "zathura"
 g.vimtex_compiler_method = "latexrun"
+-- }}}
+
+-- todotxt {{{
+require("todotxt").setup({
+	todotxt = vim.env.HOME .. "/doc/todo.txt",
+	donetxt = vim.env.HOME .. "/doc/.done.todo.txt",
+	lsp = true,
+	max_priority = "C",
+	metadata = {
+		size = { sort = "desc" },
+		due = { sort = "asc" },
+		["progress"] = {
+			sort = function(a, b)
+				local status = {
+					["doing"] = 1,
+					["todo"] = 2,
+					["waiting"] = 3,
+				}
+
+				local weight_a = status[a:lower()] or 99
+				local weight_b = status[b:lower()] or 99
+
+				return weight_a < weight_b
+			end,
+		},
+	},
+	ghost_text = {
+		enable = true,
+		mappings = {
+			["(A)"] = "Important, Urgent",
+			["(B)"] = "Important",
+			["(C)"] = "Urgent",
+			["(D)"] = "Later",
+			["(E)"] = "Conditional Timing",
+		},
+		highlight = "GruvboxMinimalBlue",
+	},
+})
+vim.keymap.set("n", "<cr>", function()
+	vim.lsp.get_clients({ bufnr = 0 })[1]:exec_cmd({ command = "todotxt.toggle_done", arguments = {} }, { bufnr = 0 })
+end, { desc = "Toggle Todo" })
 -- }}}
 
 later(function()
