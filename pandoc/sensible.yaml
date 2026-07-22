@@ -13,3 +13,6 @@ header-includes:
   - \renewenvironment{figure}[1][2] {\expandafter\origfigure\expandafter[H]} {\endorigfigure}
   - \renewcommand{\arraystretch}{2.2}
   - \setlength{\tabcolsep}{8pt}
+  - \makeatletter
+  - \def\maxheight{0.45\textheight}
+  - \makeatother
