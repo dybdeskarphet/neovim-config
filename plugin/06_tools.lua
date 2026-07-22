@@ -48,9 +48,17 @@ require("todotxt").setup({
 		highlight = "GruvboxMinimalBlue",
 	},
 })
-vim.keymap.set("n", "<cr>", function()
-	vim.lsp.get_clients({ bufnr = 0 })[1]:exec_cmd({ command = "todotxt.toggle_done", arguments = {} }, { bufnr = 0 })
-end, { desc = "Toggle Todo" })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "todotxt",
+	callback = function(args)
+		vim.keymap.set("n", "<cr>", function()
+			local clients = vim.lsp.get_clients({ bufnr = 0 })
+			if clients and #clients > 0 then
+				clients[1]:exec_cmd({ command = "todotxt.toggle_done", arguments = {} }, { bufnr = 0 })
+			end
+		end, { buffer = args.buf, desc = "Toggle Todo" })
+	end,
+})
 -- }}}
 
 later(function()
