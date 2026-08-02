@@ -140,7 +140,6 @@ later(function()
 			"texlab",
 			"hyprls",
 			"yamlls",
-			"sqlls",
 			"csharp_ls",
 			"taplo",
 			"ltex_plus",
@@ -150,7 +149,7 @@ later(function()
 	})
 	-- }}}
 	-- Tool installation {{{2
-	local other_packages = { "prettierd", "prettier", "stylua", "black", "eslint_d", "rustfmt", "shfmt", "nixfmt" }
+	local other_packages = { "prettierd", "prettier", "stylua", "ruff", "eslint_d", "rustfmt", "shfmt", "nixfmt" }
 	local registry = require("mason-registry")
 	local function ensure_installed()
 		for _, tool in ipairs(other_packages) do
@@ -172,7 +171,7 @@ later(function()
 	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "black" },
+			python = { "ruff" },
 			rust = { "rustfmt" },
 			html = { "prettierd", lsp_format = "fallback" },
 			javascript = { "prettierd", lsp_format = "fallback" },
@@ -182,9 +181,16 @@ later(function()
 			typescriptreact = { "prettierd", lsp_format = "fallback" },
 			javascriptreact = { "prettierd", lsp_format = "fallback" },
 			sh = { "shfmt" },
+			pkgbuild = { "shfmt" },
+			PKGBUILD = { "shfmt" },
 			nix = { "nixfmt", lsp_format = "fallback" },
 			toml = { "taplo", lsp_format = "fallback" },
 			fish = { lsp_format = "prefer" },
+		},
+		formatters = {
+			shfmt = {
+				prepend_args = { "-ln", "bash" },
+			},
 		},
 		format_on_save = function(bufnr)
 			if g.disable_autoformat or vim.b[bufnr].disable_autoformat then
