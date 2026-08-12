@@ -120,6 +120,20 @@ later(function()
 		},
 	})
 	-- }}}
+
+	-- gtkcsslanguageserver {{{2
+	vim.lsp.config("gtkcsslanguageserver", {
+		cmd = { "gtkcsslanguageserver" },
+		filetypes = { "gtkcss", "css" },
+		root_markers = { ".git", "style.css", "colors.css", "config.jsonc", "flake.nix" },
+		on_init = function(client)
+			if type(client.server_capabilities.diagnosticProvider) == "boolean" then
+				client.server_capabilities.diagnosticProvider = {}
+			end
+		end,
+	})
+	vim.lsp.enable("gtkcsslanguageserver")
+	-- }}}
 	-- }}}
 
 	-- Mason {{{1

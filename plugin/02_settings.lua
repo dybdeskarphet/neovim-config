@@ -96,14 +96,23 @@ diag.config({
 
 -- Set filetype with extension {{{
 vim.filetype.add({
+	extension = {
+		gtkcss = "gtkcss",
+	},
 	filename = {
 		["todo.txt"] = "todotxt",
 		["dunstrc"] = "dosini",
+		["gtk.css"] = "gtkcss",
 	},
 	pattern = {
 		[".*%.todo%.txt"] = "todotxt",
 		[".*.rasi"] = "rasi",
 		[".*/hypr/.*%.conf"] = "hyprlang",
+		[".*/ags/.*%.css"] = "gtkcss",
+		[".*/gtk%-[34]%.0/.*%.css"] = "gtkcss",
+		[".*/waybar/.*%.css"] = "gtkcss",
+		[".*%.gtk%.css"] = "gtkcss",
+		[".*prompt.*%.txt"] = "markdown",
 	},
 })
 -- }}}
