@@ -163,7 +163,8 @@ later(function()
 	})
 	-- }}}
 	-- Tool installation {{{2
-	local other_packages = { "prettierd", "prettier", "stylua", "ruff", "eslint_d", "rustfmt", "shfmt", "nixfmt" }
+	local other_packages =
+		{ "biome", "prettierd", "prettier", "stylua", "ruff", "eslint_d", "rustfmt", "shfmt", "nixfmt" }
 	local registry = require("mason-registry")
 	local function ensure_installed()
 		for _, tool in ipairs(other_packages) do
@@ -188,12 +189,12 @@ later(function()
 			python = { "ruff" },
 			rust = { "rustfmt" },
 			html = { "prettierd", lsp_format = "fallback" },
-			javascript = { "prettierd", lsp_format = "fallback" },
-			typescript = { "prettierd", lsp_format = "fallback" },
+			javascript = { "biome", lsp_format = "fallback" },
+			typescript = { "biome", lsp_format = "fallback" },
 			svelte = { "prettier", lsp_format = "fallback" },
 			markdown = { "prettierd", lsp_format = "fallback" },
-			typescriptreact = { "prettierd", lsp_format = "fallback" },
-			javascriptreact = { "prettierd", lsp_format = "fallback" },
+			typescriptreact = { "biome", lsp_format = "fallback" },
+			javascriptreact = { "biome", lsp_format = "fallback" },
 			sh = { "shfmt" },
 			pkgbuild = { "shfmt" },
 			PKGBUILD = { "shfmt" },
