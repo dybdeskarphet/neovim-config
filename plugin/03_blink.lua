@@ -17,7 +17,11 @@ later(function()
 	-- }}}
 
 	-- mini.pairs {{{
-	require("mini.pairs").setup()
+	require("mini.pairs").setup({
+		mappings = {
+			[">"] = { action = "close", pair = "><" },
+		},
+	})
 	-- }}}
 
 	-- blink.cmp {{{
