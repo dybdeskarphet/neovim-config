@@ -32,8 +32,6 @@ ts.install({
 	"c_sharp",
 	"todotxt",
 })
-
-pcall(vim.treesitter.language.register, "css", { "gtkcss" })
 -- }}}
 
 -- treesitter indentation {{{
