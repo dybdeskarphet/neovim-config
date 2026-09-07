@@ -88,6 +88,24 @@ later(function()
 			permanent_delete = false,
 		},
 	})
+
+	-- Enable mini.files native LSP file operations for 'move' actions
+	local _, H = debug.getupvalue(MiniFiles.synchronize, 1)
+	if H and H.lsp_fs_hook then
+		local orig_lsp_fs_hook = H.lsp_fs_hook
+		H.lsp_fs_hook = function(method, diffs, lsp_timeout)
+			local modified_diffs = {}
+			for _, d in ipairs(diffs) do
+				local d_copy = vim.deepcopy(d)
+				if d_copy.action == "move" then
+					d_copy.action = "rename"
+				end
+				table.insert(modified_diffs, d_copy)
+			end
+			return orig_lsp_fs_hook(method, modified_diffs, lsp_timeout)
+		end
+	end
+
 	local map_split = function(buf_id, lhs, direction)
 		local rhs = function()
 			local cur_target = MiniFiles.get_explorer_state().target_window
