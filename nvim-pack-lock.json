@@ -89,6 +89,10 @@
       "rev": "005368b30cea12ececfbe27240b4269939aac6e6",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "render-markdown.nvim": {
       "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
@@ -112,6 +116,10 @@
     "vimtex": {
       "rev": "2f279775e5b73743973bf2b013791f8f1673d5ac",
       "src": "https://github.com/lervag/vimtex"
+    },
+    "yazi.nvim": {
+      "rev": "7c670e05a6a3a1367adcb6a776edac1d8a72934a",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }
