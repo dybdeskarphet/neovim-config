@@ -269,6 +269,9 @@ later(function()
 			shfmt = {
 				prepend_args = { "-ln", "bash" },
 			},
+			ruff = {
+				append_args = { "--unfixable", "F401" },
+			},
 		},
 		format_on_save = function(bufnr)
 			if g.disable_autoformat or vim.b[bufnr].disable_autoformat then
