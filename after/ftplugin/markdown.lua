@@ -139,13 +139,19 @@ require("render-markdown").setup({
 			--   'rendered':        Replaces the 'raw' value when rendering
 			--   'highlight':       Highlight for the 'rendered' icon
 			--   'scope_highlight': Highlight for item associated with custom checkbox
-			custom = {
-				todo = {
-					raw = "[-]",
-					rendered = "󰥔 ",
-					highlight = "String",
-					scope_highlight = nil,
-				},
+		},
+		custom = {
+			todo = {
+				raw = "[-]",
+				rendered = "󰥔 ",
+				highlight = "String",
+				scope_highlight = nil,
+			},
+			none = {
+				raw = "[?]",
+				rendered = "󰟢 ",
+				highlight = "GruvboxMinimalBlue",
+				scope_highlight = nil,
 			},
 		},
 	},
