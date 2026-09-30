@@ -3,7 +3,6 @@ add({
 	gh("lervag/vimtex"),
 	gh("phrmendes/todotxt.nvim"),
 })
--- vim.opt.rtp:prepend(vim.fn.expand("~/code/git/todotxt.nvim/"))
 -- }}}
 
 -- vimtex {{{
@@ -66,6 +65,8 @@ later(function()
 	add({
 		"https://git.sr.ht/~nedia/auto-save.nvim",
 		gh("brenoprata10/nvim-highlight-colors"),
+		gh("nvim-lua/plenary.nvim"),
+		gh("mikavilpas/yazi.nvim"),
 	})
 	-- }}}
 
@@ -82,59 +83,16 @@ later(function()
 	end, "Toggle Undotree")
 	-- }}}
 
-	-- mini.files {{{
-	require("mini.files").setup({
-		options = {
-			permanent_delete = false,
+	-- yazi.nvim {{{
+	require("yazi").setup({
+		floating_window_scaling_factor = 0.85,
+		floating_window_opts = {
+			border = "rounded",
 		},
 	})
-
-	-- Enable mini.files native LSP file operations for 'move' actions
-	local _, H = debug.getupvalue(MiniFiles.synchronize, 1)
-	if H and H.lsp_fs_hook then
-		local orig_lsp_fs_hook = H.lsp_fs_hook
-		H.lsp_fs_hook = function(method, diffs, lsp_timeout)
-			local modified_diffs = {}
-			for _, d in ipairs(diffs) do
-				local d_copy = vim.deepcopy(d)
-				if d_copy.action == "move" then
-					d_copy.action = "rename"
-				end
-				table.insert(modified_diffs, d_copy)
-			end
-			return orig_lsp_fs_hook(method, modified_diffs, lsp_timeout)
-		end
-	end
-
-	local map_split = function(buf_id, lhs, direction)
-		local rhs = function()
-			local cur_target = MiniFiles.get_explorer_state().target_window
-			local new_target = vim.api.nvim_win_call(cur_target, function()
-				cmd(direction .. " split")
-				return vim.api.nvim_get_current_win()
-			end)
-
-			MiniFiles.set_target_window(new_target)
-			MiniFiles.go_in()
-		end
-
-		local desc = "Split " .. direction
-		map("n", lhs, rhs, { buffer = buf_id, desc = desc })
-	end
-
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "MiniFilesBufferCreate",
-		callback = function(args)
-			local buf_id = args.data.buf_id
-			map_split(buf_id, "<C-s>", "belowright horizontal")
-			map_split(buf_id, "<C-v>", "belowright vertical")
-			map_split(buf_id, "<C-t>", "tab")
-		end,
-	})
-
-	nm("T", function()
-		MiniFiles.open()
-	end, "Open mini.files")
+	vim.keymap.set("n", "T", function()
+		require("yazi").yazi()
+	end)
 	-- }}}
 
 	-- auto-save.nvim {{{
