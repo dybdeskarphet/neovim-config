@@ -1,0 +1,30 @@
+{
+  "Nix Module": {
+    "prefix": [
+      "mod",
+      "module",
+      "fn"
+    ],
+    "body": [
+      "{ ... }:",
+      "{",
+      "  $0",
+      "}"
+    ],
+    "description": "Nix module template ({ ... }: { ... })"
+  },
+  "Nix Module with Pkgs": {
+    "prefix": [
+      "pmod",
+      "pmodule",
+      "pfn"
+    ],
+    "body": [
+      "{ pkgs, ... }:",
+      "{",
+      "  $0",
+      "}"
+    ],
+    "description": "Nix module template with pkgs ({ pkgs, ... }: { ... })"
+  }
+}
