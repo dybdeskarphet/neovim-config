@@ -35,6 +35,40 @@ later(function()
 	})
 	-- }}}
 
+	-- tailwindcss {{{2
+	vim.lsp.config("tailwindcss", {
+		root_dir = function(bufnr, on_dir)
+			local root = vim.fs.root(bufnr, {
+				"tailwind.config.js",
+				"tailwind.config.cjs",
+				"tailwind.config.mjs",
+				"tailwind.config.ts",
+				"postcss.config.js",
+				"postcss.config.cjs",
+				"postcss.config.mjs",
+				"postcss.config.ts",
+				"package.json",
+			})
+			if on_dir then
+				on_dir(root)
+			end
+			return root
+		end,
+		settings = {
+			tailwindCSS = {
+				files = {
+					exclude = {
+						"**/.git/**",
+						"**/node_modules/**",
+						"**/result/**",
+						"**/*.qcow2",
+					},
+				},
+			},
+		},
+	})
+	-- }}}
+
 	-- ts_ls {{{2
 	vim.lsp.config("ts_ls", {
 		filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
