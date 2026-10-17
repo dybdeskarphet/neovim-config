@@ -42,13 +42,12 @@ g.mkdp_auto_close = 0
 
 -- md-pdf.nvim {{{
 require("md-pdf").setup({
+	pdf_engine = "typst",
 	margins = "2cm",
 	toc = true,
 	pandoc_user_args = {
-		"--filter",
-		"mermaid-filter",
 		"--metadata-file",
-		vim.fn.stdpath("config") .. "/pandoc/sensible.yaml",
+		vim.fn.stdpath("config") .. "/pandoc/typst.yaml",
 	},
 	preview_cmd = function()
 		return "zathura"
