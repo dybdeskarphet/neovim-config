@@ -47,8 +47,6 @@ require("md-pdf").setup({
 	pandoc_user_args = {
 		"--filter",
 		"mermaid-filter",
-		"--defaults",
-		"alerts",
 		"--metadata-file",
 		vim.fn.stdpath("config") .. "/pandoc/sensible.yaml",
 	},
