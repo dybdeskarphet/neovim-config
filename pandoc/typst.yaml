@@ -2,6 +2,7 @@ toc: true
 toc-depth: 3
 lang: tr-TR
 papersize: a4
+mainfont: "Libertinus Serif"
 margin:
   x: 2cm
   y: 2cm
