@@ -109,6 +109,9 @@ vim.filetype.add({
 		[".*.gtk.css"] = "less",
 		[".*/gtk%-[34]%.0/.*%.css"] = "less",
 	},
+	extension = {
+		corn = "corn",
+	},
 })
 -- }}}
 

@@ -31,6 +31,7 @@ ts.install({
 	"sql",
 	"c_sharp",
 	"todotxt",
+	"corn",
 })
 -- }}}
 
