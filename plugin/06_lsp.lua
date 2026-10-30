@@ -248,7 +248,7 @@ later(function()
 	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "ruff" },
+			python = { "ruff_fix", "ruff_format" },
 			rust = { "rustfmt" },
 			html = { "prettierd", lsp_format = "fallback" },
 			javascript = { "biome", lsp_format = "fallback" },
@@ -269,7 +269,7 @@ later(function()
 			shfmt = {
 				prepend_args = { "-ln", "bash" },
 			},
-			ruff = {
+			ruff_fix = {
 				append_args = { "--unfixable", "F401" },
 			},
 		},
