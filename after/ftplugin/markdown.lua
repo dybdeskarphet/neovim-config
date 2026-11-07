@@ -1,25 +1,10 @@
 -- Initialize plugins {{{
 vim.api.nvim_create_autocmd("PackChanged", {
-	desc = "Build markdown-preview.nvim on install or update",
 	callback = function(ev)
-		local name, kind = ev.data.spec.name, ev.data.kind
-		if name == "markdown-preview.nvim" and (kind == "install" or kind == "update") then
-			local plugin_path = ev.data.path
-
-			if vim.fn.isdirectory(plugin_path) == 1 then
-				vim.notify("Starting npm install in " .. plugin_path .. "...", vim.log.levels.INFO)
-				vim.system({ "npm", "install" }, { cwd = plugin_path }, function(obj)
-					vim.schedule(function()
-						if obj.code == 0 then
-							vim.notify("npm install finished successfully!", vim.log.levels.INFO)
-						else
-							vim.notify("npm install failed:\n" .. obj.stderr, vim.log.levels.ERROR)
-						end
-					end)
-				end)
-			else
-				vim.notify("Plugin directory not found: " .. plugin_path, vim.log.levels.ERROR)
-			end
+		local data = ev.data
+		if data.spec.name == "markdown-preview.nvim" and data.kind ~= "delete" then
+			local cmd = vim.fn.has("win32") == 1 and { "cmd.exe", "/c", "install.cmd" } or { "./install.sh" }
+			vim.system(cmd, { cwd = data.path .. "/app" }):wait()
 		end
 	end,
 })
@@ -27,17 +12,10 @@ vim.api.nvim_create_autocmd("PackChanged", {
 add({
 	gh("nvim-treesitter/nvim-treesitter"),
 	gh("MeanderingProgrammer/render-markdown.nvim"),
-	gh("iamcco/markdown-preview.nvim"),
 	gh("arminveres/md-pdf.nvim"),
 	gh("Myzel394/easytables.nvim"),
+	gh("sammaji/markdown-preview.nvim"),
 })
--- }}}
-
-g.mkdp_browser = "chromium"
-g.mkdp_filetypes = { "markdown" }
-g.mkdp_page_title = "${name}"
-g.mkdp_port = "9033"
-g.mkdp_auto_close = 0
 -- }}}
 
 -- md-pdf.nvim {{{
@@ -52,6 +30,17 @@ require("md-pdf").setup({
 	preview_cmd = function()
 		return "zathura"
 	end,
+})
+-- }}}
+
+-- markdown-preview {{{
+require("markdown-preview").setup({
+	theme = "dark",
+	browser = { "chromium", "--new-window" },
+	preview_options = {
+		sync_scroll_type = "top",
+		front_matter = "panel",
+	},
 })
 -- }}}
 
