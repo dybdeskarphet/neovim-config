@@ -98,6 +98,8 @@ diag.config({
 vim.filetype.add({
 	filename = {
 		["todo.txt"] = "todotxt",
+		["done.txt"] = "todotxt",
+		["report.txt"] = "todotxt",
 		["dunstrc"] = "dosini",
 	},
 	pattern = {
