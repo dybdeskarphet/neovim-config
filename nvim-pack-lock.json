@@ -18,7 +18,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "csvview.nvim": {
-      "rev": "5c22774c3ecc7f8883af5d143b366e45b1f0875d",
+      "rev": "f190de76d2eca0380ddcb2425cd582d740699b55",
       "src": "https://github.com/hat0uma/csvview.nvim"
     },
     "easytables.nvim": {
@@ -26,23 +26,23 @@
       "src": "https://github.com/Myzel394/easytables.nvim"
     },
     "friendly-snippets": {
-      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gruvbox-minimal.nvim": {
-      "rev": "64641b9fe77c7fce4b611c2e597a24db81289b4d",
+      "rev": "58a517b250ef854d8dfc4ed0982652969a610cb7",
       "src": "https://github.com/dybdeskarphet/gruvbox-minimal.nvim"
     },
     "iron.nvim": {
-      "rev": "c7f8047d964fb155a701b7c860fa3d4143d713c5",
+      "rev": "5e73b979e83b959b0965cf75ec8ee324afaf3d34",
       "src": "https://github.com/Vigemus/iron.nvim"
     },
     "markdown-preview.nvim": {
-      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
-      "src": "https://github.com/iamcco/markdown-preview.nvim"
+      "rev": "168d5fbbd7acfb6b736c5f4d881a423bc9fa6604",
+      "src": "https://github.com/sammaji/markdown-preview.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "9d28935aa95fa6c1dc7c4d6747f101a72a8a4bec",
+      "rev": "3a5cd6d562a01f6829a35ae761dc383264ea452b",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -54,7 +54,7 @@
       "src": "https://github.com/arminveres/md-pdf.nvim"
     },
     "mini.nvim": {
-      "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
+      "rev": "a321b535c75ca88ba7fddfd8eb5b583fbda50dd6",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-highlight-colors": {
@@ -66,27 +66,27 @@
       "src": "https://github.com/kosayoda/nvim-lightbulb"
     },
     "nvim-lspconfig": {
-      "rev": "bff1bd61cb1455040533201ca1edf1e84efa578f",
+      "rev": "adfbb74472f6c231b651b650a89f414c2680fb31",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "0195cd62fa89950f34c0e0d648ea7897ab85d4d3",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
-      "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
+      "rev": "8decd73460d26ef0a0befb745d022dd1fc2c38b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
+      "rev": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-ts-autotag": {
-      "rev": "88c1453db4ba7dd24131086fe51fdf74e587d275",
+      "rev": "d7220b55e16ed3c04e88086256def5d282429493",
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "orgmode": {
-      "rev": "005368b30cea12ececfbe27240b4269939aac6e6",
+      "rev": "a7fdbd3cfdd94b425c655cc72e3a6c4dd0a3959f",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "plenary.nvim": {
@@ -94,7 +94,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
+      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "sqls.nvim": {
@@ -106,7 +106,7 @@
       "src": "https://github.com/phrmendes/todotxt.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "9dc4ffc4fb010e7abb976a92360c2c5a7d324c15",
+      "rev": "06c90a3af8eb471f4a4ff979d681312284a8583a",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-mediawiki": {
@@ -114,11 +114,11 @@
       "src": "https://github.com/m-pilia/vim-mediawiki"
     },
     "vimtex": {
-      "rev": "2f279775e5b73743973bf2b013791f8f1673d5ac",
+      "rev": "3f96503904db6acdb7108cd93a9580dd41e88555",
       "src": "https://github.com/lervag/vimtex"
     },
     "yazi.nvim": {
-      "rev": "7c670e05a6a3a1367adcb6a776edac1d8a72934a",
+      "rev": "c691969163c8c3c0ae211814bd9c5deb2705a92c",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
