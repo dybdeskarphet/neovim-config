@@ -36,14 +36,7 @@ require("todotxt").setup({
 		},
 	},
 	ghost_text = {
-		enable = true,
-		mappings = {
-			["(A)"] = "Important, Urgent",
-			["(B)"] = "Important",
-			["(C)"] = "Urgent",
-			["(D)"] = "Later",
-			["(E)"] = "Conditional Timing",
-		},
+		enable = false,
 		highlight = "GruvboxMinimalBlue",
 	},
 })
