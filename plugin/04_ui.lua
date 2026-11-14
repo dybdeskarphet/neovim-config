@@ -80,10 +80,10 @@ require("mini.statusline").setup({
 })
 -- }}}
 
--- gruvbox-minimal.nvim {{{
+-- min.nvim {{{
 require("min").setup({
 	flavor = "monokai",
-	transparent = false,
+	transparent = true,
 	contrast = "low",
 	theme = "dark",
 	markdown_docstring = {
