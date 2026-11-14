@@ -82,7 +82,7 @@ require("mini.statusline").setup({
 
 -- gruvbox-minimal.nvim {{{
 require("min").setup({
-	flavor = "kanagawa",
+	flavor = "monokai",
 	transparent = false,
 	contrast = "low",
 	theme = "dark",

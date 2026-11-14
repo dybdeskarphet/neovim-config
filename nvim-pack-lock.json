@@ -53,6 +53,10 @@
       "rev": "d0bab77b6965dcd272c3221e6d42d30194d341e2",
       "src": "https://github.com/arminveres/md-pdf.nvim"
     },
+    "min.nvim": {
+      "rev": "d7e31dcd407aa52ac4e39c253a79e722c48ab671",
+      "src": "https://github.com/dybdeskarphet/min.nvim"
+    },
     "mini.nvim": {
       "rev": "a321b535c75ca88ba7fddfd8eb5b583fbda50dd6",
       "src": "https://github.com/nvim-mini/mini.nvim"
