@@ -1,5 +1,5 @@
 -- Initialize plugins {{{
-add({ gh("dybdeskarphet/gruvbox-minimal.nvim") })
+add({ gh("dybdeskarphet/min.nvim") })
 -- }}}
 
 -- mini.starter {{{
@@ -81,24 +81,16 @@ require("mini.statusline").setup({
 -- }}}
 
 -- gruvbox-minimal.nvim {{{
-require("gruvbox-minimal").setup({
-	transparent = true,
+require("min").setup({
+	flavor = "kanagawa",
+	transparent = false,
+	contrast = "low",
 	theme = "dark",
 	markdown_docstring = {
 		python = true,
 	},
 })
-cmd.colorscheme("gruvbox-minimal")
-nm("<leader>R", function()
-	for name, _ in pairs(package.loaded) do
-		if name:match("gruvbox%-minimal") then
-			package.loaded[name] = nil
-		end
-	end
-	require("gruvbox-minimal").setup(gruvbox_config)
-	cmd.colorscheme("gruvbox-minimal")
-	notify("Gruvbox Minimal reloaded.")
-end, "Reload gruvbox-minimal.nvim")
+cmd.colorscheme("min")
 -- }}}
 
 -- ui2 {{{
